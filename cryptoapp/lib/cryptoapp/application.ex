@@ -14,6 +14,7 @@ defmodule Cryptoapp.Application do
       supervisor(CryptoappWeb.Endpoint, []),
       # Start your own worker by calling: Cryptoapp.Worker.start_link(arg1, arg2, arg3)
       # worker(Cryptoapp.Worker, [arg1, arg2, arg3]),
+      worker(CryptoappWeb.Scheduler, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
