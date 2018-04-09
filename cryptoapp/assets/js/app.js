@@ -19,12 +19,3 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-
-import todo_init from "./todo";
-
-function start() {
-  let root = document.getElementById('root');
-  todo_init(root);
-}
-
-$(start);

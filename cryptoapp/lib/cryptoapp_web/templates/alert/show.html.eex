@@ -1,0 +1,23 @@
+<h2>Show Alert</h2>
+
+<ul>
+
+  <li>
+    <strong>Currencyname:</strong>
+    <%= @alert.currencyname %>
+  </li>
+
+  <li>
+    <strong>Upperlimit:</strong>
+    <%= @alert.upperlimit %>
+  </li>
+
+  <li>
+    <strong>Lowerlimit:</strong>
+    <%= @alert.lowerlimit %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: alert_path(@conn, :edit, @alert) %></span>
+<span><%= link "Back", to: alert_path(@conn, :index) %></span>

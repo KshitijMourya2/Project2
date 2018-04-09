@@ -42,7 +42,10 @@ defmodule Cryptoapp.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:httpoison, "~> 1.0"},
-      {:poison, "~> 3.1"},  
+      {:poison, "~> 3.1"},
+      {:comeonin, "~> 4.0"},
+      {:argon2_elixir, "~> 1.2"},
+      {:distillery, "~> 1.5", runtime: false},
     ]
   end
 
