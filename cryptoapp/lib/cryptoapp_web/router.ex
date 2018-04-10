@@ -33,6 +33,7 @@ defmodule CryptoappWeb.Router do
     delete "/session", SessionController, :delete
 
     get "/", PageController, :index
+    #get "/users", UserController, :new
     resources "/users", UserController
     resources "/alerts", AlertController
   end

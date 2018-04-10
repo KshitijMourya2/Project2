@@ -135,9 +135,11 @@ function login_form(state = empty_login_form, action) {
 }
 
 let empty_register_form = {
-    username: "",
+    email: "",
+    name: "",
+    contactnumber: "",
     password: "",
-    confirmPassword: "",
+    password_confirmation: "",
     isRegisterClicked: false
 };
 
@@ -156,13 +158,7 @@ function register_form(state = empty_register_form, action) {
 function root_reducer(state0, action) {
     //console.log("state0", state0);
     let reducer = combineReducers({
-        users: users,
-        token: token,
-        tasks: tasks,
-        new_task_form: new_task_form,
-        tasks_details_form: tasks_details_form,
-        login_form: login_form,
-        register_form: register_form,
+        register_form: register_form
     });
     let state1 = reducer(state0, action);
     return deepFreeze(state1);

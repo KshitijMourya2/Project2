@@ -19,15 +19,18 @@
       <%= if @current_user do %>
          <ul class="navbar-nav mr-auto">
             <li>
+              <a href="/" activeClass="active" class="nav-link">Home</a>
+            </li>
+            <li>
               <a href="/alerts" activeClass="active" class="nav-link">Subscriptions</a>
             </li>
             <li>
               <a href="/users" activeClass="active" class="nav-link">All Users</a>
             </li>
          </ul>
-      <span class="navbar-text">
+      <span class="navbar-text", style="color:white;">
          Logged in as: <%= @current_user.name %> |
-         <%= link "Log Out", to: "/session", method: :delete %>
+         <%= link "Log Out", to: "/session", method: :delete, class: "btn btn-outline-danger btn-sm mb-1" %>
       </span>
       <% else %>
         <%= form_tag("/session", method: :post, class: "form-inline col-10") do %>

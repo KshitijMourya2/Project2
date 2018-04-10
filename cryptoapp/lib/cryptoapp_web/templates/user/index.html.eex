@@ -7,18 +7,18 @@
       <th>Email</th>
       <th>Name</th>
       <th>Contactnumber</th>
-      <th>Password hash</th>
+      <th class="col-3">Password hash</th>
 
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for user <- @users do %>
-    <tr class="col-10">
+    <tr>
       <td><%= user.email %></td>
       <td><%= user.name %></td>
       <td><%= user.contactnumber %></td>
-      <td class="col-3"><%= user.password_hash %></td>
+      <td class="col-2 d-inline-flex"><%= user.password_hash %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>

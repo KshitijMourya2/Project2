@@ -22,13 +22,14 @@ import "phoenix_html";
 import store from "./store";
 import api from "./api";
 import index_page_init from "./components/indexPage";
+import register_form from  "./components/registerForm"
 import $ from "jquery";
 
 function start() {
-    let login = document.getElementById('login');
+    let registerForm = document.getElementById('registerForm');
     let index = document.getElementById('indexContent');
-    if(login) {
-
+    if(registerForm) {
+        register_form(store, registerForm);
     }
     if (index) {
         index_page_init(store, index);
