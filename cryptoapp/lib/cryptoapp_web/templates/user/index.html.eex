@@ -1,3 +1,4 @@
+<div class="container">
 <h2>Listing Users</h2>
 
 <table class="table">
@@ -13,11 +14,11 @@
   </thead>
   <tbody>
 <%= for user <- @users do %>
-    <tr>
+    <tr class="col-10">
       <td><%= user.email %></td>
       <td><%= user.name %></td>
       <td><%= user.contactnumber %></td>
-      <td><%= user.password_hash %></td>
+      <td class="col-3"><%= user.password_hash %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
@@ -31,4 +32,6 @@
 
 <div class="topnav">
   <span><%= link "Add New User", to: user_path(@conn, :new) %></span>
+</div>
+
 </div>

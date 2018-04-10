@@ -12,49 +12,41 @@
   </head>
 
   <body>
-    <div class="container">
-      <!-- TODO: style with bootstrap -->
-      <div class="row">
-        <%= if @current_user do %>
-          <div class="col-9">
-            <p class="p-4">
-              <a href="/alerts">Subscriptions</a> |
-              <a href="/users">All Users</a>
-            </p>
+    <nav class="navbar navbar-dark bg-dark navbar-expand">
+      <span class="navbar-brand col-2">
+         <b>Cryptocurrency<br/>Monitoring System</b>
+      </span>
+      <%= if @current_user do %>
+         <ul class="navbar-nav mr-auto">
+            <li>
+              <a href="/alerts" activeClass="active" class="nav-link">Subscriptions</a>
+            </li>
+            <li>
+              <a href="/users" activeClass="active" class="nav-link">All Users</a>
+            </li>
+         </ul>
+      <span class="navbar-text">
+         Logged in as: <%= @current_user.name %> |
+         <%= link "Log Out", to: "/session", method: :delete %>
+      </span>
+      <% else %>
+        <%= form_tag("/session", method: :post, class: "form-inline col-10") do %>
+          <div class="form-group col-11 offset-6">
+            <div class="form-group mx-sm-1 mb-2">
+              <label for="inputPassword2" class="sr-only">Email</label>
+              <input type="email" name="email" class="form-control form-control-sm" placeholder="Email">
+            </div>
+            <div class="form-group mx-sm-1 mb-2">
+              <label for="inputPassword2" class="sr-only">Password</label>
+              <input type="password" name="password" class="form-control form-control-sm" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-sm mb-2">Login</button>
+            <%= link "Register", to: user_path(@conn, :new), class: "btn btn-outline-primary btn-sm mb-2",
+            style: "margin-left:5px;margin-right:0px;" %>
           </div>
-          <div class="col-3">
-            <p class="p-4">
-              Logged in as: <%= @current_user.name %> |
-              <%= link "Log Out", to: "/session", method: :delete %>
-            </p>
-          </div>
-        <% else %>
-            <div class="col-3 offset-9">
-              <p>Not logged in.</p>
-            </div>
-        <% end %>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <%= if @current_user do %>
-            <div class="header">
-              <h1>Cryptocurrency Monitoring System</h1>
-            </div>
-            <div class="topnav">
-                <%= link "Subscriptions", to: alert_path(@conn, :index) %>
-                <%= link "Users", to: user_path(@conn, :index) %>
-            </div>
-          <% else %>
-            <div class="header">
-              <h1>Cryptocurrency Monitoring System</h1>
-            </div>
-            <div class="topnav">
-              <%= link "Sign In", to: page_path(@conn, :index) %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
+    <% end %>
+    </nav>
 
       <%= if get_flash(@conn, :info) do %>
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -63,6 +55,7 @@
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <% end %>
 
+    <div class="container">
       <main>
         <%= render @view_module, @view_template, assigns %>
       </main>

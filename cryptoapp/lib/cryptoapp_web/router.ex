@@ -29,6 +29,9 @@ defmodule CryptoappWeb.Router do
   scope "/", CryptoappWeb do
     pipe_through :browser # Use the default browser stack
 
+    post "/session", SessionController, :create
+    delete "/session", SessionController, :delete
+
     get "/", PageController, :index
     resources "/users", UserController
     resources "/alerts", AlertController

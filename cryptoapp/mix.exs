@@ -44,7 +44,8 @@ defmodule Cryptoapp.Mixfile do
       {:httpoison, "~> 1.0"},
       {:poison, "~> 3.1"},
       {:comeonin, "~> 4.0"},
-      {:argon2_elixir, "~> 1.2"},
+      #{:argon2_elixir, "~> 1.2"},
+      {:pbkdf2_elixir, "~> 0.12"},
       {:distillery, "~> 1.5", runtime: false},
     ]
   end

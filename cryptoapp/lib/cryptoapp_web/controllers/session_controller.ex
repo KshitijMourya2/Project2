@@ -21,7 +21,7 @@ defmodule CryptoappWeb.SessionController do
   # TODO: Move to user.ex
   def get_and_auth_user(email, password) do
     user = Accounts.get_user_by_email(email)
-    case Comeonin.Argon2.check_pass(user, password) do
+    case Comeonin.Pbkdf2.check_pass(user, password) do
       {:ok, user} -> user
       _else       -> nil
     end
