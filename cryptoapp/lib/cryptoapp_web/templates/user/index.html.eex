@@ -1,4 +1,3 @@
-<div class="container">
 <h2>Listing Users</h2>
 
 <table class="table">
@@ -6,8 +5,7 @@
     <tr>
       <th>Email</th>
       <th>Name</th>
-      <th>Contactnumber</th>
-      <th class="col-3">Password hash</th>
+      <th>Password hash</th>
 
       <th></th>
     </tr>
@@ -17,8 +15,7 @@
     <tr>
       <td><%= user.email %></td>
       <td><%= user.name %></td>
-      <td><%= user.contactnumber %></td>
-      <td class="col-2 d-inline-flex"><%= user.password_hash %></td>
+      <td><%= user.password_hash %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
@@ -30,8 +27,4 @@
   </tbody>
 </table>
 
-<div class="topnav">
-  <span><%= link "Add New User", to: user_path(@conn, :new) %></span>
-</div>
-
-</div>
+<span><%= link "New User", to: user_path(@conn, :new) %></span>

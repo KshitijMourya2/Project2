@@ -3,9 +3,10 @@ defmodule Cryptoapp.Repo.Migrations.CreateAlerts do
 
   def change do
     create table(:alerts) do
-      add :currencyname, :string, null: false
-      add :upperlimit, :float, null: false
-      add :lowerlimit, :float, null: false
+      add :currency_name, :string, null: false
+      add :upper_limit, :float, null: false
+      add :lower_limit, :float, null: false
+      add :currentprice, :float, null: false
       add :user_id, references(:users, on_delete: :delete_all), null: false
 
       timestamps()

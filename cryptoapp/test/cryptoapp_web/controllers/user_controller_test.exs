@@ -3,9 +3,9 @@ defmodule CryptoappWeb.UserControllerTest do
 
   alias Cryptoapp.Accounts
 
-  @create_attrs %{contactnumber: 42, email: "some email", name: "some name", password_hash: "some password_hash"}
-  @update_attrs %{contactnumber: 43, email: "some updated email", name: "some updated name", password_hash: "some updated password_hash"}
-  @invalid_attrs %{contactnumber: nil, email: nil, name: nil, password_hash: nil}
+  @create_attrs %{email: "some email", name: "some name", password_hash: "some password_hash"}
+  @update_attrs %{email: "some updated email", name: "some updated name", password_hash: "some updated password_hash"}
+  @invalid_attrs %{email: nil, name: nil, password_hash: nil}
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)

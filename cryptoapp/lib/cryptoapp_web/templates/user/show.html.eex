@@ -13,18 +13,11 @@
   </li>
 
   <li>
-    <strong>Contactnumber:</strong>
-    <%= @user.contactnumber %>
-  </li>
-
-  <li>
     <strong>Password hash:</strong>
     <%= @user.password_hash %>
   </li>
 
 </ul>
 
-<div class="topnav">
-  <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-  <span><%= link "Back", to: user_path(@conn, :index) %></span>
-</div>
+<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>

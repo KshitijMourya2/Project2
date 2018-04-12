@@ -110,4 +110,5 @@ defmodule Cryptoapp.Accounts do
   def get_email() do
     Repo.all(from u in "users", select: u.email)
   end
+
 end

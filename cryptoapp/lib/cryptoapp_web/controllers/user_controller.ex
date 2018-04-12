@@ -10,24 +10,8 @@ defmodule CryptoappWeb.UserController do
   end
 
   def new(conn, _params) do
-    user = Map.get(_params, "user")
-    if user do
-      IO.puts("AAAAAAAAAAAAAAAAAAAA")
-      IO.inspect(user)
-      case Accounts.create_user(user) do
-        {:ok, user} ->
-          conn
-          |> put_flash(:info, "User created successfully.")
-          |> redirect(to: user_path(conn, :show, user))
-        {:error, %Ecto.Changeset{} = changeset} ->
-          render(conn, "new.html", changeset: changeset)
-      end
-    else
-      changeset = Accounts.change_user(%User{})
-      render(conn, "new.html", changeset: changeset)
-    end
-#    changeset = Accounts.change_user(%User{})
-#    render(conn, "new.html", changeset: changeset)
+    changeset = Accounts.change_user(%User{})
+    render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do

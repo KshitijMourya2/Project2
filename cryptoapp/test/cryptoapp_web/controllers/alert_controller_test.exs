@@ -3,9 +3,9 @@ defmodule CryptoappWeb.AlertControllerTest do
 
   alias Cryptoapp.Subscribe
 
-  @create_attrs %{currencyname: "some currencyname", lowerlimit: 120.5, upperlimit: 120.5}
-  @update_attrs %{currencyname: "some updated currencyname", lowerlimit: 456.7, upperlimit: 456.7}
-  @invalid_attrs %{currencyname: nil, lowerlimit: nil, upperlimit: nil}
+  @create_attrs %{currency_name: "some currency_name", currentprice: 120.5, lower_limit: 120.5, upper_limit: 120.5}
+  @update_attrs %{currency_name: "some updated currency_name", currentprice: 456.7, lower_limit: 456.7, upper_limit: 456.7}
+  @invalid_attrs %{currency_name: nil, currentprice: nil, lower_limit: nil, upper_limit: nil}
 
   def fixture(:alert) do
     {:ok, alert} = Subscribe.create_alert(@create_attrs)
@@ -60,7 +60,7 @@ defmodule CryptoappWeb.AlertControllerTest do
       assert redirected_to(conn) == alert_path(conn, :show, alert)
 
       conn = get conn, alert_path(conn, :show, alert)
-      assert html_response(conn, 200) =~ "some updated currencyname"
+      assert html_response(conn, 200) =~ "some updated currency_name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, alert: alert} do

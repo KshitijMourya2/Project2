@@ -109,4 +109,5 @@ defmodule Cryptoapp.Subscribe do
   def get_users() do
     Repo.all(from u in "users", select: {u.name, u.id})
   end
+
 end

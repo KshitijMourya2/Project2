@@ -4,7 +4,6 @@ defmodule Cryptoapp.Accounts.User do
 
 
   schema "users" do
-    field :contactnumber, :integer
     field :email, :string
     field :name, :string
     field :password_hash, :string
@@ -18,11 +17,11 @@ defmodule Cryptoapp.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :name, :contactnumber, :password, :password_confirmation])
+    |> cast(attrs, [:email, :name, :password, :password_confirmation])
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()
-    |> validate_required([:email, :name, :contactnumber, :password_hash])
+    |> validate_required([:email, :name, :password_hash])
   end
 
   # Password validation

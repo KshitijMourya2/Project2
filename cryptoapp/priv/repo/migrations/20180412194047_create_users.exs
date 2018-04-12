@@ -5,7 +5,6 @@ defmodule Cryptoapp.Repo.Migrations.CreateUsers do
     create table(:users) do
       add :email, :string, null: false
       add :name, :string, null: false
-      add :contactnumber, :integer, null: false
       add :password_hash, :string, null: false
 
       timestamps()
@@ -13,4 +12,3 @@ defmodule Cryptoapp.Repo.Migrations.CreateUsers do
 
   end
 end
-

@@ -3,9 +3,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Currencyname</th>
-      <th>Upperlimit</th>
-      <th>Lowerlimit</th>
+      <th>Currency name</th>
+      <th>Upper limit</th>
+      <th>Lower limit</th>
+      <th>Currentprice</th>
 
       <th></th>
     </tr>
@@ -13,9 +14,10 @@
   <tbody>
 <%= for alert <- @alerts do %>
     <tr>
-      <td><%= alert.currencyname %></td>
-      <td><%= alert.upperlimit %></td>
-      <td><%= alert.lowerlimit %></td>
+      <td><%= alert.currency_name %></td>
+      <td><%= alert.upper_limit %></td>
+      <td><%= alert.lower_limit %></td>
+      <td><%= alert.currentprice %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: alert_path(@conn, :show, alert), class: "btn btn-default btn-xs" %></span>

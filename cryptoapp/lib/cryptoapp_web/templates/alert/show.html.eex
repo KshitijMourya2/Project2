@@ -3,18 +3,23 @@
 <ul>
 
   <li>
-    <strong>Currencyname:</strong>
-    <%= @alert.currencyname %>
+    <strong>Currency name:</strong>
+    <%= @alert.currency_name %>
   </li>
 
   <li>
-    <strong>Upperlimit:</strong>
-    <%= @alert.upperlimit %>
+    <strong>Upper limit:</strong>
+    <%= @alert.upper_limit %>
   </li>
 
   <li>
-    <strong>Lowerlimit:</strong>
-    <%= @alert.lowerlimit %>
+    <strong>Lower limit:</strong>
+    <%= @alert.lower_limit %>
+  </li>
+
+  <li>
+    <strong>Currentprice:</strong>
+    <%= @alert.currentprice %>
   </li>
 
 </ul>

@@ -4,9 +4,10 @@ defmodule Cryptoapp.Subscribe.Alert do
 
 
   schema "alerts" do
-    field :currencyname, :string
-    field :lowerlimit, :float
-    field :upperlimit, :float
+    field :currency_name, :string
+    field :currentprice, :float
+    field :lower_limit, :float
+    field :upper_limit, :float
     belongs_to :user, Cryptoapp.Accounts.User
 
     timestamps()
@@ -15,7 +16,7 @@ defmodule Cryptoapp.Subscribe.Alert do
   @doc false
   def changeset(alert, attrs) do
     alert
-    |> cast(attrs, [:currencyname, :upperlimit, :lowerlimit, :user_id])
-    |> validate_required([:currencyname, :upperlimit, :lowerlimit, :user_id])
+    |> cast(attrs, [:currency_name, :upper_limit, :lower_limit, :currentprice, :user_id])
+    |> validate_required([:currency_name, :upper_limit, :lower_limit, :currentprice, :user_id])
   end
 end
