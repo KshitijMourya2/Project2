@@ -1,87 +1,33 @@
 import { createStore, combineReducers } from "redux";
 import deepFreeze from "deep-freeze";
+import _ from "underscore";
+import api from "./api";
 
-function tasks(state= [], action) {
+function coin_list(state= [], action) {
     switch (action.type) {
-        case "TASKS_LIST":
-            return [...action.tasks];
-            break;
-        case "ADD_TASK":
-            return [action.task, ...state];
-            break;
-        case "UPDATE_TASK":
-            state = state.filter(item => item.id !== action.task.id);
-            return [action.task, ...state];
-            break;
-        case "DELETE_TASK":
-            state = state.filter(item => item !== action.deletedTask);
-            return state;
+        case "COIN_LIST":
+            // let a = [];
+            // for (var k in action.coins) {
+            //     a.push(action.coins[k]);
+            // }
+            //
+            return action.coins;
             break;
         default:
             return state;
     }
 }
 
-let empty_form = {
-    user_id: "",
-    title: "",
-    description: "",
-    assigned_to: "",
-    time: 0,
-    complete: false,
-    isAssignClicked: false
-};
-
-function new_task_form(state = empty_form, action) {
-
+function coin_price_list(state= [], action) {
     switch (action.type) {
-        case "UPDATE_FROM":
-            return Object.assign({}, state, action.task);
-            break;
-        case "SET_TOKEN":
-            let newState = {
-                user_id: action.token.user_id,
-                title: "",
-                description: "",
-                assigned_to: "",
-                time: 0,
-                complete: false,
-                isAssignClicked: false
-            };
-            return Object.assign({}, state, newState);
-            break;
-        default:
-            return state;
-    }
-}
-
-let empty_details_form = {
-    title: "",
-    description: "",
-    assigned_to: "",
-    time: 0,
-    session_time: 0,
-    complete: false,
-    isAssignClicked: false
-};
-
-function tasks_details_form(state = empty_details_form, action) {
-
-    switch (action.type) {
-        case "UPDATE_DETAILS_FORM":
-            return Object.assign({}, state, action.task);
-            break;
-        case "SET_TOKEN":
-            let newState = {
-                title: "",
-                description: "",
-                assigned_to: "",
-                time: 0,
-                session_time: 0,
-                complete: false,
-                isAssignClicked: false
-            };
-            return Object.assign({}, state, newState);
+        case "COIN_PRICE_LIST":
+            // let a = [];
+            // for (var k in action.prices) {
+            //     a.push(action.prices[k]);
+            // }
+            //console.log('store price', action.prices);
+            console.log([action.prices, ...state]);
+            return [action.prices, ...state];
             break;
         default:
             return state;
@@ -158,9 +104,12 @@ function register_form(state = empty_register_form, action) {
 function root_reducer(state0, action) {
     //console.log("state0", state0);
     let reducer = combineReducers({
+        coin_price_list: coin_price_list,
+        coin_list: coin_list,
         register_form: register_form
     });
     let state1 = reducer(state0, action);
+    console.log(state1);
     return deepFreeze(state1);
 }
 

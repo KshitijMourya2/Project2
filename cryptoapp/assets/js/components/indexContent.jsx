@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
+import Coins from './coins';
 import {NavItem} from 'reactstrap';
 import api from "../api";
 
 function IndexContent(props) {
+    console.log("index props", props.coin_list);
     return (
         <div>
         <nav>
@@ -18,6 +20,7 @@ function IndexContent(props) {
             </div>
         </nav>
         < div class="tab-content" id="nav-tabContent" >
+            <Coins coins={props.coin_list}/>
         < div class="tab-pane fade show active" id="nav-home" role = "tabpanel" aria-labelledby = "nav-home-tab" > </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
@@ -28,8 +31,8 @@ function IndexContent(props) {
 
 
 function state2props(state) {
-    //console.log("task form state2props", state);
-    return {token: state.token};
+    console.log("coins from indexcontent", state);
+    return {coin_list: state.coin_list};
 }
 
 export default connect(state2props)(IndexContent);

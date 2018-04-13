@@ -26,6 +26,7 @@ import register_form from  "./components/registerForm"
 import $ from "jquery";
 
 function start() {
+    api.request_coin_list();
     let registerForm = document.getElementById('registerForm');
     let index = document.getElementById('indexContent');
     if(registerForm) {
