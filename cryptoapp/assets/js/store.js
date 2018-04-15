@@ -1,47 +1,34 @@
 import { createStore, combineReducers } from "redux";
 import deepFreeze from "deep-freeze";
+import _ from "underscore";
+import api from "./api";
 
-function alerts(state = [], action) {
-  switch (action.type) {
-    case 'CREATE_ALERT':
-      return [action.alert, ...state];
-    default:
-      return state;
-  }
-}
-
-function users(state = [], action) {
-  switch (action.type) {
-    case 'CREATE_USER':
-      return [action.user, ...state];
-    default:
-      return state;
-  }
-}
-
-let empty_form = {
-    user_id: "",
-    currency_name: "",
-    upper_limit: 0.0,
-    lower_limit: 0.0,
-    currentprice: 0.0,
-};
-
-function create_alert_form(state = empty_form, action) {
+function coin_list(state= [], action) {
     switch (action.type) {
-        case "UPDATE_ALERT_FORM":
-            return Object.assign({}, state, action.alert);
-        case "SET_TOKEN":
-            let newState = {
-                user_id: action.token.user_id,
-                title: "",
-                description: "",
-                assigned_to: "",
-                time: 0,
-                complete: false,
-                isAssignClicked: false
-            };
-            return Object.assign({}, state, newState);
+        case "COIN_LIST":
+            // let a = [];
+            // for (var k in action.coins) {
+            //     a.push(action.coins[k]);
+            // }
+            //
+            return action.coins;
+            break;
+        default:
+            return state;
+    }
+}
+
+function coin_price_list(state= [], action) {
+    switch (action.type) {
+        case "COIN_PRICE_LIST":
+            // let a = [];
+            // for (var k in action.prices) {
+            //     a.push(action.prices[k]);
+            // }
+            //console.log('store price', action.prices);
+            console.log([action.prices, ...state]);
+            return [action.prices, ...state];
+            break;
         default:
             return state;
     }
@@ -99,9 +86,14 @@ function login(state = empty_login, action) {
 }
 
 function root_reducer(state0, action) {
-    console.log("state0", state0);
-    let reducer = combineReducers({ alerts, users, token, login, create_alert_form, edit_alert_form});
+    //console.log("state0", state0);
+    let reducer = combineReducers({
+        coin_price_list: coin_price_list,
+        coin_list: coin_list,
+        register_form: register_form
+    });
     let state1 = reducer(state0, action);
+    console.log(state1);
     return deepFreeze(state1);
 }
 
