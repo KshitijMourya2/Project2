@@ -1,3 +1,5 @@
+// Attrbution -> https://www.cryptocompare.com/api/
+
 import store from "./store";
 import $ from 'jquery';
 import _ from "underscore";
