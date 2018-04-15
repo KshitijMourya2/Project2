@@ -2,7 +2,6 @@ defmodule CryptoappWeb.SessionController do
   use CryptoappWeb, :controller
 
   alias Cryptoapp.Users
-  alias Cryptoapp.Users.User
 
   def create(conn, %{"email" => email, "password" => password}) do
     user = get_and_auth_user(email, password)

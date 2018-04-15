@@ -71,6 +71,17 @@ function userform(state = empty_user, action) {
   }
 }
 
+function register_form(state = empty_user, action) {
+  switch (action.type) {
+    case 'UPDATE_REGISTER_FORM':
+      return Object.assign({}, state, action.data);
+    case 'CLEAR_USER_FORM':
+      return empty_user;
+    default:
+      return state;
+  }
+}
+
 let empty_login = {
     email: "",
     pass: "",

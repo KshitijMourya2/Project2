@@ -20,7 +20,7 @@ function Coin(props) {
 
     let baseUrl = "https://www.cryptocompare.com/";
 
-    return <Card>
+    return (<Card>
         <CardBody>
             <div className={"row"}>
                 <div className={"col-6"}>
@@ -32,7 +32,7 @@ function Coin(props) {
                 </div>
             </div>
         </CardBody>
-    </Card>;
+    </Card>);
 }
 
 function state2props(state) {
