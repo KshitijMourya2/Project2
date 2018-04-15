@@ -14,9 +14,9 @@ function IndexContent(props) {
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                    aria-controls="nav-home" aria-selected="true">USD</a>
                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                   aria-controls="nav-profile" aria-selected="false">BTC</a>
+                   aria-controls="nav-profile" aria-selected="false">EUR</a>
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                   aria-controls="nav-contact" aria-selected="false">ETH</a>
+                   aria-controls="nav-contact" aria-selected="false">CNY</a>
             </div>
         </nav>
         < div class="tab-content" id="nav-tabContent" >
