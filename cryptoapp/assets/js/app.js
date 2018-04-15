@@ -22,11 +22,12 @@ import "phoenix_html";
 import store from "./store";
 import api from "./api";
 import index_page_init from "./components/indexPage";
-import register_form from  "./components/registerForm"
+import register_form from  "./components/registerForm";
 import $ from "jquery";
 
 function start() {
     api.request_coin_list();
+    var inter = setInterval(() => api.request_coin_list(), 90000);
     let registerForm = document.getElementById('registerForm');
     let index = document.getElementById('indexContent');
     if(registerForm) {
