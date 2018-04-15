@@ -1,12 +1,12 @@
-defmodule Cryptoapp.Accounts do
+defmodule Cryptoapp.Users do
   @moduledoc """
-  The Accounts context.
+  The Users context.
   """
 
   import Ecto.Query, warn: false
   alias Cryptoapp.Repo
 
-  alias Cryptoapp.Accounts.User
+  alias Cryptoapp.Users.User
 
   @doc """
   Returns the list of users.
@@ -38,8 +38,9 @@ defmodule Cryptoapp.Accounts do
   def get_user!(id), do: Repo.get!(User, id)
   def get_user(id), do: Repo.get(User, id)
 
-  def get_user_by_email(email) do
-    Repo.get_by(User, email: email)
+  def get_and_auth_user(email, pass) do
+    user = Repo.one(from u in User, where: u.email == ^email)
+    Comeonin.Pbkdf2.check_pass(user, pass)
   end
 
   @doc """
@@ -106,9 +107,4 @@ defmodule Cryptoapp.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
-
-  def get_email() do
-    Repo.all(from u in "users", select: u.email)
-  end
-
 end

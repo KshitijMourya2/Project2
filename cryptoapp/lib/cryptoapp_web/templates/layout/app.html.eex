@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand">
       <span class="navbar-brand col-2">
-         <b>Cryptocurrency<br/>Monitoring System</b>
+         <b>CryptoApp</b>
       </span>
       <%= if @current_user do %>
          <ul class="navbar-nav mr-auto">
@@ -24,39 +24,109 @@
             <li>
               <a href="/alerts" activeClass="active" class="nav-link">Subscriptions</a>
             </li>
-            <li>
-              <a href="/users" activeClass="active" class="nav-link">All Users</a>
-            </li>
          </ul>
       <span class="navbar-text", style="color:white;">
          Logged in as: <%= @current_user.name %> |
          <%= link "Log Out", to: "/session", method: :delete, class: "btn btn-outline-danger btn-sm mb-1" %>
       </span>
       <% else %>
-        <%= form_tag("/session", method: :post, class: "form-inline col-10") do %>
-          <div class="form-group col-11 offset-6">
+        <%= form_tag("/session", method: :post, class: "form-inline col-11") do %>
+        <div class="container">
+          <div class="form-group col-7 offset-5">
             <div class="form-group mx-sm-1 mb-2">
-              <label for="inputPassword2" class="sr-only">Email</label>
+              <label for="email" class="sr-only">Email</label>
               <input type="email" name="email" class="form-control form-control-sm" placeholder="Email">
             </div>
             <div class="form-group mx-sm-1 mb-2">
-              <label for="inputPassword2" class="sr-only">Password</label>
+              <label for="password" class="sr-only">Password</label>
               <input type="password" name="password" class="form-control form-control-sm" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-outline-primary btn-sm mb-2">Login</button>
-            <%= link "Register", to: user_path(@conn, :new), class: "btn btn-outline-primary btn-sm mb-2",
-            style: "margin-left:5px;margin-right:0px;" %>
+            <button type="submit" class="btn btn-outline-primary btn-sm mb-2" value="login">Login</button>&nbsp;
+        <% end %>
+        <%= form_tag("/user", method: :post, class: "form-inline col-2") do %>
+            <button id="registerBtn" type="button" class="btn btn-outline-primary btn-sm mb-2" data-toggle="modal">Register</button>
+
+            <div id="registerModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-cm" role="document">
+                <div class="modal-content">
+                  <div class="modal-header modal-header-login">
+                    <h3 class="modal-title">Sign In</h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="tab-content clearfix">
+                        <div role="tabpanel" class="tab-pane active" id="pane-login">
+                          <form class="form-vertical">
+                            <div class="form-group">
+                              <label for="name" class="col-3 control-label space-label" title="Your name.">Name</label>
+                              <input id="name" type="text" class="col-7 form-control space-input" name="name" placeholder="username" required="" autofocus="">
+                            </div>
+                            <div class="form-group">
+                              <label for="email" class="col-3 control-label space-label" title="Your email address.">Email</label>
+                              <input id="email" type="email" class="col-7 form-control space-input" name="email" placeholder="user@example.com" required="" autofocus="">
+                            </div>
+                            <div class="form-group">
+                              <label for="password" class="col-3 control-label space-label" title="Your new password.">Password</label>
+                              <input id="password" type="password" class="col-7 form-control space-input" name="password" placeholder="password" required="" tabindex="0">
+                            </div>
+                          </form>
+                          <button type="submit" class="btn btn-signup btn-lg btn-block" value="signup" tabindex="0">Sign up</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer modal-footer-login">
+                    <div class="row">
+                      <div class="col-12">
+                      <p>By registering for a free account on cryptoapp.aayushi.website, you agree and accept the <a href="/terms-conditions/" target="_blank">Terms and Conditions</a>.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+            // Get the modal
+            var modal = document.getElementById('registerModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("registerBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            </script>
           </div>
+        </div>
       <% end %>
     <% end %>
     </nav>
 
-      <%= if get_flash(@conn, :info) do %>
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <% end %>
-      <%= if get_flash(@conn, :error) do %>
-        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <% end %>
+    <%= if get_flash(@conn, :info) do %>
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <% end %>
+    <%= if get_flash(@conn, :error) do %>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <% end %>
 
     <div class="container">
       <main>

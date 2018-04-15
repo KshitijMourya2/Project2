@@ -1,60 +1,42 @@
 defmodule CryptoappWeb.AlertController do
   use CryptoappWeb, :controller
 
-  alias Cryptoapp.Subscribe
-  alias Cryptoapp.Subscribe.Alert
+  alias Cryptoapp.Alerts
+  alias Cryptoapp.Alerts.Alert
+
+  action_fallback CryptoappWeb.FallbackController
 
   def index(conn, _params) do
-    alerts = Subscribe.list_alerts()
-    render(conn, "index.html", alerts: alerts)
-  end
-
-  def new(conn, _params) do
-    changeset = Subscribe.change_alert(%Alert{})
-    render(conn, "new.html", changeset: changeset)
+    alerts = Alerts.list_alerts()
+    render(conn, "index.json", alerts: alerts)
   end
 
   def create(conn, %{"alert" => alert_params}) do
-    case Subscribe.create_alert(alert_params) do
-      {:ok, alert} ->
-        conn
-        |> put_flash(:info, "Alert created successfully.")
-        |> redirect(to: alert_path(conn, :show, alert))
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+    with {:ok, %Alert{} = alert} <- Alerts.create_alert(alert_params) do
+      conn
+      |> put_status(:created)
+      |> put_resp_header("location", alert_path(conn, :show, alert))
+      |> render("show.json", alert: alert)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    alert = Subscribe.get_alert!(id)
-    render(conn, "show.html", alert: alert)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    alert = Subscribe.get_alert!(id)
-    changeset = Subscribe.change_alert(alert)
-    render(conn, "edit.html", alert: alert, changeset: changeset)
+    alert = Alerts.get_alert!(id)
+    render(conn, "show.json", alert: alert)
   end
 
   def update(conn, %{"id" => id, "alert" => alert_params}) do
-    alert = Subscribe.get_alert!(id)
+    alert = Alerts.get_alert!(id)
 
-    case Subscribe.update_alert(alert, alert_params) do
-      {:ok, alert} ->
-        conn
-        |> put_flash(:info, "Alert updated successfully.")
-        |> redirect(to: alert_path(conn, :show, alert))
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", alert: alert, changeset: changeset)
+    with {:ok, %Alert{} = alert} <- Alerts.update_alert(alert, alert_params) do
+      render(conn, "show.json", alert: alert)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    alert = Subscribe.get_alert!(id)
-    {:ok, _alert} = Subscribe.delete_alert(alert)
-
-    conn
-    |> put_flash(:info, "Alert deleted successfully.")
-    |> redirect(to: alert_path(conn, :index))
+    alert = Alerts.get_alert!(id)
+    with {:ok, %Alert{}} <- Alerts.delete_alert(alert) do
+      send_resp(conn, :no_content, "")
+    end
   end
 end

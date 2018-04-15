@@ -1,25 +1,21 @@
 defmodule CryptoappWeb.Router do
   use CryptoappWeb, :router
 
+  alias Cryptoapp.Users
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :get_current_user
-    plug :get_users_list
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
   def get_current_user(conn, _params) do
     user_id = get_session(conn, :user_id)
-    user = Cryptoapp.Accounts.get_user(user_id || -1)
+    user = Users.get_user(user_id || -1)
     assign(conn, :current_user, user)
-  end
-
-  def get_users_list(conn, _params) do
-    users = Cryptoapp.Subscribe.get_users()
-    assign(conn, :users_list, users)
   end
 
   pipeline :api do
@@ -32,14 +28,19 @@ defmodule CryptoappWeb.Router do
     post "/session", SessionController, :create
     delete "/session", SessionController, :delete
 
+    post "/user", UserController, :create
+
     get "/", PageController, :index
-    #get "/users", UserController, :new
-    resources "/users", UserController
-    resources "/alerts", AlertController
+    get "/users", PageController, :index
+    get "/alerts", PageController, :index
+    get "/users/:id", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CryptoappWeb do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", CryptoappWeb do
+     pipe_through :api
+     resources "/users", UserController, except: [:new, :edit]
+     resources "/alerts", AlertController, except: [:new, :edit]
+
+  end
 end

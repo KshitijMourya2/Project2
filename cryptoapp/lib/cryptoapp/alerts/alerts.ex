@@ -1,12 +1,12 @@
-defmodule Cryptoapp.Subscribe do
+defmodule Cryptoapp.Alerts do
   @moduledoc """
-  The Subscribe context.
+  The Alerts context.
   """
 
   import Ecto.Query, warn: false
   alias Cryptoapp.Repo
 
-  alias Cryptoapp.Subscribe.Alert
+  alias Cryptoapp.Alerts.Alert
 
   @doc """
   Returns the list of alerts.
@@ -54,9 +54,10 @@ defmodule Cryptoapp.Subscribe do
 
   """
   def create_alert(attrs \\ %{}) do
-    %Alert{}
+    {:ok, alert} = %Alert{}
     |> Alert.changeset(attrs)
     |> Repo.insert()
+    {:ok, Repo.preload(alert, :user)}
   end
 
   @doc """
@@ -105,9 +106,4 @@ defmodule Cryptoapp.Subscribe do
   def change_alert(%Alert{} = alert) do
     Alert.changeset(alert, %{})
   end
-
-  def get_users() do
-    Repo.all(from u in "users", select: {u.name, u.id})
-  end
-
 end

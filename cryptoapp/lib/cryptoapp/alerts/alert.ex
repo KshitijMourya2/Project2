@@ -1,4 +1,4 @@
-defmodule Cryptoapp.Subscribe.Alert do
+defmodule Cryptoapp.Alerts.Alert do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -8,7 +8,7 @@ defmodule Cryptoapp.Subscribe.Alert do
     field :currentprice, :float
     field :lower_limit, :float
     field :upper_limit, :float
-    belongs_to :user, Cryptoapp.Accounts.User
+    belongs_to :user, Cryptoapp.Users.User
 
     timestamps()
   end

@@ -1,8 +1,8 @@
 defmodule CryptoappWeb.SessionController do
   use CryptoappWeb, :controller
 
-  alias Cryptoapp.Accounts
-  alias Cryptoapp.Accounts.User
+  alias Cryptoapp.Users
+  alias Cryptoapp.Users.User
 
   def create(conn, %{"email" => email, "password" => password}) do
     user = get_and_auth_user(email, password)
@@ -20,7 +20,7 @@ defmodule CryptoappWeb.SessionController do
 
   # TODO: Move to user.ex
   def get_and_auth_user(email, password) do
-    user = Accounts.get_user_by_email(email)
+    user = Users.get_user_by_email(email)
     case Comeonin.Pbkdf2.check_pass(user, password) do
       {:ok, user} -> user
       _else       -> nil

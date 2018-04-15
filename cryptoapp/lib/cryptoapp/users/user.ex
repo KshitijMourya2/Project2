@@ -1,4 +1,4 @@
-defmodule Cryptoapp.Accounts.User do
+defmodule Cryptoapp.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
