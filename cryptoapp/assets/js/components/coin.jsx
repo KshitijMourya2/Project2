@@ -2,10 +2,8 @@ import React from 'react';
 import api from "../api";
 import {Card, CardBody} from 'reactstrap';
 import {connect} from "react-redux";
-import _ from "underscore";
 
 function Coin(props) {
-
 
     let coin = props.coin;
     let USD = 0;
@@ -14,9 +12,7 @@ function Coin(props) {
         if (prices != undefined) {
             USD = prices.USD;
         }
-
     }
-
 
     let baseUrl = "https://www.cryptocompare.com/";
 

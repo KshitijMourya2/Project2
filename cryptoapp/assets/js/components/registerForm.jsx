@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect, Provider} from "react-redux";
-import $ from "jquery";
 import api from "../api";
-import _ from "underscore";
 import {FormGroup, Label, Input} from 'reactstrap';
 import ReactDOM from "react-dom";
 

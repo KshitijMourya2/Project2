@@ -5,105 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Aayushi, Divya, Kshitij, Teng">
 
     <title>Hello Cryptoapp!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand">
-      <span class="navbar-brand col-2">
-         <b>CryptoTracker</b>
-      </span>
-      <%= if @current_user do %>
-         <ul class="navbar-nav mr-auto">
-            <li>
-              <a href="/" activeClass="active" class="nav-link">Home</a>
-            </li>
-            <li>
-              <a href="/alerts" activeClass="active" class="nav-link">Subscriptions</a>
-            </li>
-         </ul>
-      <span class="navbar-text", style="color:white;">
-         Logged in as: <%= @current_user.name %> |
-         <%= link "Log Out", to: "/session", method: :delete, class: "btn btn-outline-danger btn-sm mb-1" %>
-      </span>
-      <% else %>
-        <div class="container">
-        <%= form_tag("/session", method: :post, class: "form-inline col-11") do %>
-          <div class="form-group col-7 offset-6">
-            <div class="form-group mx-sm-1">
-              <label for="email" class="sr-only">Email</label>
-              <input type="email" name="email" class="form-control form-control-sm" placeholder="Email">
-            </div>
-            <div class="form-group mx-sm-1">
-              <label for="password" class="sr-only">Password</label>
-              <input type="password" name="password" class="form-control form-control-sm" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-outline-primary btn-sm mx-sm-1" value="login">Login</button>
-          </div>
-        <% end %>
-        <%= form_tag("/user", method: :post, class: "form-inline col-1") do %>
-            <button id="registerBtn" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal">Register</button>
-
-            <div id="registerModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-cm" role="document">
-                <div class="modal-content">
-                  <div class="modal-header modal-header-login">
-                    <h3 class="modal-title">Sign In</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="tab-content clearfix">
-                        <div role="tabpanel" class="tab-pane active" id="pane-login">
-                          <form class="form-vertical">
-                            <div class="form-group">
-                              <label for="name" class="col-3 control-label space-label" title="Your name.">Name</label>
-                              <input id="name" type="text" class="col-7 form-control space-input" name="name" placeholder="username" required="" autofocus="">
-                            </div>
-                            <div class="form-group">
-                              <label for="email" class="col-3 control-label space-label" title="Your email address.">Email</label>
-                              <input id="email" type="email" class="col-7 form-control space-input" name="email" placeholder="user@example.com" required="" autofocus="">
-                            </div>
-                            <div class="form-group">
-                              <label for="password" class="col-3 control-label space-label" title="Your new password.">Password</label>
-                              <input id="password" type="password" class="col-7 form-control space-input" name="password" placeholder="password" required="" tabindex="0">
-                            </div>
-                          </form>
-                          <button type="submit" class="btn btn-signup btn-lg btn-block" value="signup" tabindex="0">Sign up</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer modal-footer-login">
-                    <div class="row">
-                      <div class="col-12">
-                      <p>By registering for a free account on cryptoapp.aayushi.website, you agree and accept the <a href="/terms-conditions/" target="_blank">Terms and Conditions</a>.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-    </nav>
-
-    <%= if get_flash(@conn, :info) do %>
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-    <% end %>
-    <%= if get_flash(@conn, :error) do %>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-    <% end %>
 
     <div class="container">
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
+
       <main>
         <%= render @view_module, @view_template, assigns %>
       </main>

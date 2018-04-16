@@ -21,48 +21,50 @@ import "phoenix_html";
 // import socket from "./socket"
 import store from "./store";
 import api from "./api";
-import index_page_init from "./components/indexPage";
-import register_form from  "./components/registerForm";
-import $ from "jquery";
 
-function start() {
-    api.request_coin_list();
-    var inter = setInterval(() => api.request_coin_list(), 90000);
-    let registerForm = document.getElementById('registerForm');
-    let index = document.getElementById('indexContent');
-    if(registerForm) {
-        register_form(store, registerForm);
-    }
-    if (index) {
-        index_page_init(store, index);
-    }
-}
+import cryptoapp_init from "./components/cryptoapp";
 
+$(function() {
+  api.request_alerts();
+  api.request_users();
 
-// Get the modal
-var modal = document.getElementById('registerModal');
+  api.request_coin_list();
+  var inter = setInterval(() => api.request_coin_list(), 90000);
+  // let registerForm = document.getElementById('registerForm');
+  // let index = document.getElementById('indexContent');
+  // if(registerForm) {
+  //     register_form(store, registerForm);
+  // }
+  // if (index) {
+  //     index_page_init(store, index);
+  // }
 
-// Get the button that opens the modal
-var btn = document.getElementById("registerBtn");
+  cryptoapp_init(store);
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+  // // Get the modal
+  // var modal = document.getElementById('registerModal');
+  //
+  // // Get the button that opens the modal
+  // var btn = document.getElementById("registerBtn");
+  //
+  // // Get the <span> element that closes the modal
+  // var span = document.getElementsByClassName("close")[0];
+  //
+  // // When the user clicks the button, open the modal
+  // btn.onclick = function() {
+  //     modal.style.display = "block";
+  // }
+  //
+  // // When the user clicks on <span> (x), close the modal
+  // span.onclick = function() {
+  //     modal.style.display = "none";
+  // }
+  //
+  // // When the user clicks anywhere outside of the modal, close it
+  // window.onclick = function(event) {
+  //     if (event.target == modal) {
+  //         modal.style.display = "none";
+  //     }
+  // }
 
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-$(start);
+});

@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from "underscore";
 import Coin from './coin';
 
 export default function Coins(props) {

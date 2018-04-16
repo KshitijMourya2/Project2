@@ -33,6 +33,9 @@ defmodule CryptoappWeb.Router do
     get "/", PageController, :index
     get "/users", PageController, :index
     get "/alerts", PageController, :index
+    get "/newAlert", PageController, :index
+    get "/register", PageController, :index
+    get "/editAlert", PageController, :index
     get "/users/:id", PageController, :index
   end
 
