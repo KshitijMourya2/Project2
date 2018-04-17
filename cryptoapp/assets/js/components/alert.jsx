@@ -19,7 +19,7 @@ function Alert(params) {
       <div>
         <p>Currency Name: <b>{ alert.currency_name }</b></p>
         <p>Upper Limit: <b>{ alert.upper_limit }</b></p>
-        <p>Lower Limit: <b>{ alert.lower_limit ? "Yes" : "No" }</b></p>
+        <p>Lower Limit: <b>{ alert.lower_limit }</b></p>
         <p>Current Price: <b>{ alert.currentprice }</b></p>
         <div><Link to={"/editAlert"} className="btn btn-primary" onClick={ edit_alert }>Edit</Link></div>
       </div>

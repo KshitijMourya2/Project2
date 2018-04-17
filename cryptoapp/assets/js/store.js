@@ -23,7 +23,8 @@ function coin_price_list(state= [], action) {
             // for (var k in action.prices) {
             //     a.push(action.prices[k]);
             // }
-            //console.log('store price', action.prices);
+            console.log('store price', action.prices);
+            console.log('store price name', action.prices.Name);
             console.log([action.prices, ...state]);
             return [action.prices, ...state];
             break;

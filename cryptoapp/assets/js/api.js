@@ -108,7 +108,7 @@ class TheServer {
           dataType: "json",
           contentType: "application/json; charset=UTF-8",
           success: (resp) => {
-              // console.log("api price", resp);
+              console.log("api price", resp);
               resp.Name = name;
               let action = {
                   type: "COIN_PRICE_LIST",
@@ -127,7 +127,7 @@ class TheServer {
           success: (resp) => {
               console.log("api", resp.Data);
               let c = this.coin_list_process(resp.Data);
-
+              console.log("---------------c: " + c);
           }
       });
   }

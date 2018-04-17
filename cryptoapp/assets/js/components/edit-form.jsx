@@ -9,12 +9,7 @@ function EditForm(params) {
     let tgt = $(ev.target);
     let data = {};
 
-    if (tgt.attr('name') == "completed") {
-      data["completed"] = $(tgt).is(':checked') ? 'true' : 'false';
-    }
-    else {
-      data[tgt.attr('name')] = tgt.val();
-    }
+    data[tgt.attr('name')] = tgt.val();
 
     let action = {
       type: 'UPDATE_EDIT_FORM',
@@ -28,11 +23,14 @@ function EditForm(params) {
     api.edit_alert(params.form, alert_id);
   }
 
+  let coins = _.map(params.coins, (cc) => <option key={cc.id} value={cc.coin_name}>{cc.coin_name}</option>);
   return <div style={{padding: "4ex"}}>
     <h2>Edit Alert</h2>
     <FormGroup>
       <Label for="currency_name">Currency Name</Label>
-      <Input name="currency_name" value={params.form.currency_name} onChange={update} />
+      <Input type="select" name="currency_name" value={params.form.currency_name} onChange={update} multiple>
+        { coins }
+      </Input>
     </FormGroup>
     <FormGroup>
       <Label for="upper_limit">Upper limit</Label>

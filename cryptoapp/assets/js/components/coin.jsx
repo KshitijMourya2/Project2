@@ -34,7 +34,7 @@ function Coin(props) {
 }
 
 function state2props(state) {
-    // console.log("task form state2props", state.coin_price_list);
+    console.log("task form state2props", state.coin_price_list);
     return {prices: state.coin_price_list};
 }
 
