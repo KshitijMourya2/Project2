@@ -8,11 +8,13 @@ function Coin(props) {
     let coin = props.coin;
     let USD = 0;
     let EUR = 0;
+    let CNY = 0;
     if (props.prices != []) {
         let prices = _.find(props.prices, (pp) => pp.Name == coin.Name);//_.filter(props.prices, (pp) => pp.Name == coin.Name);
         if (prices != undefined) {
             USD = prices.USD;
             EUR = prices.EUR;
+            CNY = prices.CNY;
         }
     }
 
@@ -26,7 +28,9 @@ function Coin(props) {
                     <p>{coin.Name}</p>
                 </div>
                 <div className={'col-3 offset-3'}>
-                    <p><b>$ </b>{USD}</p>
+                    <span><b>$ </b>{USD}</span><br/>
+                    <span><b>€ </b>{EUR}</span><br/>
+                    <span><b>¥ </b>{CNY}</span>
                 </div>
             </div>
         </CardBody>
@@ -34,7 +38,7 @@ function Coin(props) {
 }
 
 function state2props(state) {
-    console.log("task form state2props", state.coin_price_list);
+    //console.log("task form state2props", state.coin_price_list);
     return {prices: state.coin_price_list};
 }
 
