@@ -1,11 +1,20 @@
 @import "bootstrap";
 
 body {
-  background: #F1F2F7;
+  background: #FFF;
   padding-top: 0;
   font-family: 'Open Sans',sans-serif;
   font-weight: 400;
   font-size: 14px;
+}
+
+.crazy_colorful_bar {
+    background-image: url(../images/vbar.jpg);
+    height: 14px;
+}
+
+.container {
+    max-width: 1340px;
 }
 
 /* The Modal (background) */

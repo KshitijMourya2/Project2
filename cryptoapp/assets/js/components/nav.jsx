@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { Form, FormGroup, NavItem, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import api from '../api';
+import app from '../app';
 import $ from "jquery";
 
 let LoginForm = connect(({login}) => {return {login};})((props) => {
@@ -89,12 +90,9 @@ function Nav(props) {
         <span className="navbar-brand">
           CryptoApp
         </span>
-        <ul className="navbar-nav mr-auto">
-        <NavItem>
-          <NavLink to="/register" href="#" activeClassName="active" className="nav-link links">Register</NavLink>
-        </NavItem>
-        </ul>
+        <ul className="navbar-nav mr-auto"></ul>
         { session_info }
+        <NavLink to="/register" href="#" className="btn btn-primary">Register</NavLink>
       </nav>
     );
   }

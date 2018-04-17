@@ -102,31 +102,13 @@ class TheServer {
     });
   }
 
-  submit_logout(data) {
-    $.ajax("/api/v1/token/logout", {
-      method: "post",
-      dataType: "json",
-      contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify(data),
-      success: (resp) => {
-        store.dispatch({
-          type: 'RESET_TOKEN',
-          token: resp,
-        });
-      },
-      error: (resp) => {
-        alert(resp.user_id);
-      },
-    });
-  }
-
   request_coin_price(name, url) {
       $.ajax(url, {
           method: "get",
           dataType: "json",
           contentType: "application/json; charset=UTF-8",
           success: (resp) => {
-              console.log("api price", resp);
+              // console.log("api price", resp);
               resp.Name = name;
               let action = {
                   type: "COIN_PRICE_LIST",
@@ -161,7 +143,7 @@ class TheServer {
 
       for (let i = 0; i < b.length; i++) {
           console.log("cc in for", b[i]);
-          let requestCoinPriceUrl = "https://min-api.cryptocompare.com/data/price?fsym=" + b[i].Name + "&tsyms=USD";
+          let requestCoinPriceUrl = "https://min-api.cryptocompare.com/data/price?fsym=" + b[i].Name + "&tsyms=USD,EUR";
           this.request_coin_price(b[i].Name, requestCoinPriceUrl);
       }
 
