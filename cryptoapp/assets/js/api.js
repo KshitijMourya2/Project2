@@ -108,7 +108,9 @@ class TheServer {
           dataType: "json",
           contentType: "application/json; charset=UTF-8",
           success: (resp) => {
-      //        console.log("api price", resp);
+              console.log("api name", name);
+              console.log("api price", resp.USD);
+    //          this.update_current_price(name, resp.USD);
               resp.Name = name;
               let action = {
                   type: "COIN_PRICE_LIST",
@@ -132,16 +134,24 @@ class TheServer {
       });
   }
 
-  update_current_price() {
-    $.ajax("https://min-api.cryptocompare.com/data/all/coinlist", {
-        method: "get",
-        dataType: "json",
-        contentType: "application/json; charset=UTF-8",
-        success: (resp) => {
-            let c = this.coin_list_process(resp.Data);
-        }
+  /*update_current_price(name, price) {
+    $.ajax("/api/v1/alerts", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ token: data.token, alert: data }),
+      success: (resp) => {
+        store.dispatch({
+          type: 'UPDATE_CURR_PRICE',
+          alert: resp.data,
+        });
+        alert("Alert created successfully!");
+      },
+      error: (resp) => {
+        alert(resp.alert_id);
+      },
     });
-  }
+  }*/
 
   coin_list_process(coin_list) {
       let a = [];
@@ -150,12 +160,13 @@ class TheServer {
       }
 
       a.sort(sortCoins);
-      let b = a.slice(0, 25);
+      let b = a.slice(0, 20);
 
       for (let i = 0; i < b.length; i++) {
   //        console.log("cc in for", b[i]);
           let requestCoinPriceUrl = "https://min-api.cryptocompare.com/data/price?fsym=" + b[i].Name + "&tsyms=USD,EUR,CNY";
           this.request_coin_price(b[i].Name, requestCoinPriceUrl);
+        //  this.update_current_price(b[i].Name,);
       }
 
   //    console.log('c api', b);
