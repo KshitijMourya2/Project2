@@ -48,7 +48,7 @@ let Session = connect(({token}) => {return {token};})((props) => {
   }
 
   return <div className="navbar-text">
-    Welcome id = { props.token.user_id } &nbsp;
+    Welcome id = { props.token.user_name } &nbsp;
     <Link onClick={ logout } className="btn btn-danger" to={"/"}>Logout</Link>
   </div>;
 });
