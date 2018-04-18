@@ -17,6 +17,7 @@ defmodule Cryptoapp.Users.User do
     user
     |> cast(attrs, [:email, :name, :password])
     |> put_pass_hash()
+    |> unique_constraint(:email)
     |> validate_required([:email, :name])
   end
 
