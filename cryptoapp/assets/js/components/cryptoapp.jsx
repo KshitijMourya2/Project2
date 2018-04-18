@@ -45,6 +45,9 @@ let Cryptoapp = connect((state) => state)((props) => {
           <Route path="/users" exact={true} render={() =>
             <Users users={props.users} />
           } />
+          <Route path="/editUser" exact={true} render={() =>
+            <Register users={props.users} root={this} />
+          } />
           <Route path="/users/:user_id" render={({match}) =>
             <Alerts alerts={_.filter(props.alerts, (tt) =>
               match.params.user_id == tt.user.id )

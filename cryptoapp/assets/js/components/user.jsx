@@ -4,29 +4,28 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import api from '../api';
 
-function Alert(params) {
-  let alert = params.alert;
+function User(params) {
+  let user = params.user;
 
-  function edit_alert(ev) {
+  function edit_user(ev) {
     let action = {
-      type: 'UPDATE_EDIT_FORM',
-      data: params.alert,
+      type: 'UPDATE_REGISTER_FORM',
+      data: params.user,
     };
     params.dispatch(action);
   }
 
   function submit(ev) {
-    api.delete_alert(params.alert.id);
+    api.delete_user(params.user.id);
   }
 
   return <Card>
     <CardBody>
       <div>
-        <p>Currency Name: <b>{ alert.currency_name }</b></p>
-        <p>Upper Limit: <b>{ alert.upper_limit }</b></p>
-        <p>Lower Limit: <b>{ alert.lower_limit }</b></p>
-        <p>Current Price: <b>{ alert.currentprice }</b></p>
-        <Link to={"/editAlert"} className="btn btn-primary mr-2" onClick={ edit_alert }>Edit</Link>
+        <p>Name: <b>{ user.name }</b></p>
+        <p>Email id: <b>{ user.email }</b></p>
+        <p>Password: <b>{ user.password }</b></p>
+        <Link to={"/editUser"} className="btn btn-primary mr-2" onClick={ edit_user }>Edit</Link>
         <Button onClick={submit} color="danger">Delete</Button>
       </div>
     </CardBody>
@@ -41,4 +40,4 @@ function state2props(state) {
 }
 
 // Export the result of a curried function call.
-export default connect(state2props)(Alert);
+export default connect(state2props)(User);

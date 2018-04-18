@@ -78,8 +78,9 @@ function Nav(props) {
               Subscribe
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem tag={Link} to="/alerts" exact={true}>Alerts</DropdownItem>
+              <DropdownItem tag={Link} to="/alerts" href="#">Alerts</DropdownItem>
               <DropdownItem tag={Link} to="/newAlert" href="#">Create Alert</DropdownItem>
+              <DropdownItem tag={Link} to="/users" href="#">Profile</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </ul>

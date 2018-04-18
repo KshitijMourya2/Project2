@@ -1,8 +1,6 @@
 defmodule CryptoappWeb.Router do
   use CryptoappWeb, :router
 
-  alias Cryptoapp.Users
-
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -24,6 +22,7 @@ defmodule CryptoappWeb.Router do
     get "/newAlert", PageController, :index
     get "/register", PageController, :index
     get "/editAlert", PageController, :index
+    get "/editUser", PageController, :index
     get "/users/:id", PageController, :index
   end
 

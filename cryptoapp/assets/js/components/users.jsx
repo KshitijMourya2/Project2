@@ -1,9 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-function User(params) {
-  return <p>{params.user.name} - assigned these <Link to={"/users/" + params.user.id}>Alerts</Link></p>;
-}
+import User from './user';
 
 export default function Users(params) {
   let users = _.map(params.users, (uu) => <User key={uu.id} user={uu} />);

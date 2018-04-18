@@ -50,6 +50,19 @@ class TheServer {
     });
   }
 
+  delete_alert(alert_id) {
+    $.ajax("/api/v1/alerts"+ "/" + alert_id, {
+      method: "delete",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+       data: "",
+      success: (resp) => {
+      this.request_alerts();
+      alert("Alert deleted!");
+      },
+    });
+  }
+
   edit_alert(data, alert_id) {
     $.ajax("/api/v1/alerts"+ "/" + alert_id, {
       method: "patch",
@@ -78,7 +91,7 @@ class TheServer {
         });
       },
       error: (resp) => {
-        alert(resp.user_id);
+        alert("User does not exist!");
       },
     });
   }
@@ -97,7 +110,20 @@ class TheServer {
         alert("Registered successfully!");
       },
       error: (resp) => {
-        alert("Error in Registration:" + resp.user_id);
+        alert("Error in Registration!");
+      },
+    });
+  }
+
+  delete_user(user_id) {
+    $.ajax("/api/v1/users"+ "/" + user_id, {
+      method: "delete",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+       data: "",
+      success: (resp) => {
+      this.request_users();
+      alert("User deleted!");
       },
     });
   }
