@@ -5,7 +5,7 @@ defmodule Cryptoapp.Alerts do
 
   import Ecto.Query, warn: false
   alias Cryptoapp.Repo
-
+  alias Cryptoapp.Users.User
   alias Cryptoapp.Alerts.Alert
 
   @doc """
@@ -76,6 +76,19 @@ defmodule Cryptoapp.Alerts do
     alert
     |> Alert.changeset(attrs)
     |> Repo.update()
+  end
+
+  def get_alert_by_currency(name) do
+    IO.inspect(name)
+    Repo.get_by(Alert, currency_name: name)
+  end
+
+  def update_curr_price(name, price) do
+    subset_query = Repo.get_by(Alert, currency_name: name) |> Repo.preload(:user)
+    Repo.update_all(
+       from(a in Alert, join: s in subquery(subset_query), on: s.id == a.id),
+       set: [currentprice: price]
+    )
   end
 
   @doc """
