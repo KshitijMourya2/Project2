@@ -90,7 +90,7 @@ defmodule Cryptoapp.Alerts do
     #   set: [currentprice: price]
     #)
     from(a in Alert, where: a.currency_name == ^name)
-    |> Repo.preload(:user)
+    #|> Repo.preload(:user)
     |> Repo.update_all(set: [currentprice: price])
   end
 

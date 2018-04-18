@@ -11,12 +11,15 @@ defmodule CryptoappWeb.Scheduler do
   end
 
   def handle_info(:work, state) do
-    Cryptoapp.CryptoCompare.run()
+  Cryptoapp.CryptoCompare.run()
+    IO.inspect("before upadate")
+    Cryptoapp.CryptoCompare.update_price()
     schedule_work()
     {:noreply, state}
   end
 
   def schedule_work do
-    Process.send_after(self(), :work, 24 * 60 * 60 * 1000)
+    Process.send_after(self(), :work, 30 * 1000)
   end
+
 end
