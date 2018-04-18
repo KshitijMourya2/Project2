@@ -4,7 +4,7 @@ import { Provider, connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import Nav from './nav';
-import Feed from './feed';
+import Alerts from './alerts';
 import Users from './users';
 import AlertForm from './alert-form';
 import Register from './register';
@@ -33,7 +33,7 @@ let Cryptoapp = connect((state) => state)((props) => {
           } />
           <Route path="/alerts" exact={true} render={() =>
             <div>
-              <Feed alerts={props.alerts} />
+              <Alerts alerts={props.alerts} />
             </div>
           } />
           <Route path="/newAlert" exact={true} render={() =>
@@ -46,7 +46,7 @@ let Cryptoapp = connect((state) => state)((props) => {
             <Users users={props.users} />
           } />
           <Route path="/users/:user_id" render={({match}) =>
-            <Feed alerts={_.filter(props.alerts, (tt) =>
+            <Alerts alerts={_.filter(props.alerts, (tt) =>
               match.params.user_id == tt.user.id )
             } />
           } />

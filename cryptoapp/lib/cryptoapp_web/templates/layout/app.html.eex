@@ -13,7 +13,7 @@
 
   <body>
 
-    <div class="container mx-sm-1 mb-2">
+    <div class="container">
       <%= if get_flash(@conn, :info) do %>
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <% end %>

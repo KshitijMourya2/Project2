@@ -80,7 +80,6 @@ function Nav(props) {
             <DropdownMenu>
               <DropdownItem tag={Link} to="/alerts" exact={true}>Alerts</DropdownItem>
               <DropdownItem tag={Link} to="/newAlert" href="#">Create Alert</DropdownItem>
-              <DropdownItem tag={Link} to="/users" href="#">All Users</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </ul>
