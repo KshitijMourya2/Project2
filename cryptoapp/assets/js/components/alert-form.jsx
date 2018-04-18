@@ -22,17 +22,19 @@ function AlertForm(params) {
   function submit(ev) {
     api.submit_alert(params.form);
   }
-
-  let coins = _.map(params.coins, (cc) => <option key={cc.id} value={cc.coin_name}>{cc.coin_name}</option>);
+  let lst = ["BTC","ETH","LTC","DASH","XMR","NXT","ETC","DOGE","ZEC","BTS","DGB","XRP","BTCD","PPC","CRAIG","XBS","XPY","PRC","YBC","DANK"];
+  //let coins = _.map(params.coins, (cc) => <option key={cc.id} value={cc.coin_name}>{cc.coin_name}</option>);
+  let coins = _.map(lst, (cc) => <option value={cc}>{cc}</option>);
   return <div style={{padding: "4ex"}}>
     <h2>New Alert</h2>
     <FormGroup>
       <Label for="currency_name">Select Currency Name</Label>
-      <Input type="select" name="currency_name" value={coins.coin_name} onChange={update} multiple>
+      <Input type="select" name="currency_name" value={coins.coin_name} onChange={update}>
         {coins}
       </Input>
     </FormGroup>
     <FormGroup>
+
       <Label for="upper_limit">Upper limit</Label>
       <Input type="number" min="0" step="15" name="upper_limit" value={params.form.upper_limit || 0} onChange={update} />
     </FormGroup>
