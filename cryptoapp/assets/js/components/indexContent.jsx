@@ -12,11 +12,11 @@ function IndexContent(props) {
                 <div className="nav nav-tabs" id="nav-tab" role="tablist">
                     <h4 className={"mx-3"}>Coin List</h4>
                     <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                       aria-controls="nav-home" aria-selected="true">USD</a>
+                       aria-controls="nav-home" aria-selected="true">Price</a>
                     <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">EUR</a>
+                       aria-controls="nav-profile" aria-selected="false">  </a>
                     <a className="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                       aria-controls="nav-contact" aria-selected="false">CNY</a>
+                       aria-controls="nav-contact" aria-selected="false">  </a>
                 </div>
             </nav>
             <div className="tab-content" id="nav-tabContent" >

@@ -53,6 +53,6 @@ config :cryptoapp, Cryptoapp.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "cryptoapp",
   password: "cryptoapp",
-  database: "cryptoapp_dev",
+  database: "cryptoapp_dev_2",
   hostname: "localhost",
   pool_size: 10
