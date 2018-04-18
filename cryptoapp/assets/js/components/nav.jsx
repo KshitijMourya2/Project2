@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Form, FormGroup, NavItem, Input, Button } from 'reactstrap';
+import { Form, FormGroup, NavItem, Input, Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { connect } from 'react-redux';
 import api from '../api';
 import app from '../app';
@@ -71,14 +71,18 @@ function Nav(props) {
         </span>
         <ul className="navbar-nav mr-auto">
           <NavItem>
-            <NavLink to="/" exact={true} activeClassName="active" className="nav-link">Feed</NavLink>
+            <NavLink to="/" exact={true} activeClassName="active" className="nav-link">CoinFeed</NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink to="/newAlert" href="#" className="nav-link">Create Alert</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/users" href="#" className="nav-link">All Users</NavLink>
-          </NavItem>
+          <UncontrolledDropdown>
+            <DropdownToggle caret>
+              Subscribe
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem tag={Link} to="/alerts" exact={true}>Alerts</DropdownItem>
+              <DropdownItem tag={Link} to="/newAlert" href="#">Create Alert</DropdownItem>
+              <DropdownItem tag={Link} to="/users" href="#">All Users</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </ul>
         { session_info }
       </nav>

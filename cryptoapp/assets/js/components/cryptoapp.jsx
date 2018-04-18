@@ -28,8 +28,12 @@ let Cryptoapp = connect((state) => state)((props) => {
           <Nav />
           <Route path="/" exact={true} render={() =>
             <div>
-              <Feed alerts={props.alerts} />
               <IndexContent/>
+            </div>
+          } />
+          <Route path="/alerts" exact={true} render={() =>
+            <div>
+              <Feed alerts={props.alerts} />
             </div>
           } />
           <Route path="/newAlert" exact={true} render={() =>
