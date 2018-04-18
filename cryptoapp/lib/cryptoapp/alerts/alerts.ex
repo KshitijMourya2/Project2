@@ -84,11 +84,14 @@ defmodule Cryptoapp.Alerts do
   end
 
   def update_curr_price(name, price) do
-    subset_query = Repo.get_by(Alert, currency_name: name) |> Repo.preload(:user)
-    Repo.update_all(
-       from(a in Alert, join: s in subquery(subset_query), on: s.id == a.id),
-       set: [currentprice: price]
-    )
+    #subset_query = Repo.get_by(Alert, currency_name: name) |> Repo.preload(:user)
+    #Repo.update_all(
+    #   from(a in Alert, join: s in subquery(subset_query), on: s.id == a.id),
+    #   set: [currentprice: price]
+    #)
+    from(a in Alert, where: a.currency_name == ^name)
+    |> Repo.preload(:user)
+    |> Repo.update_all(set: [currentprice: price])
   end
 
   @doc """
