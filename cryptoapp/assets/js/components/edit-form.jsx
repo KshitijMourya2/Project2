@@ -28,8 +28,7 @@ function EditForm(params) {
     <h2>Edit Alert</h2>
     <FormGroup>
       <Label for="currency_name">Currency Name</Label>
-      <Input type="select" name="currency_name" value={params.form.currency_name} onChange={update} multiple>
-        { coins }
+      <Input type="text" name="currency_name" value={params.form.currency_name} onChange={update} disabled>
       </Input>
     </FormGroup>
     <FormGroup>
