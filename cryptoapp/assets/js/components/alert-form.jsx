@@ -29,7 +29,7 @@ function AlertForm(params) {
     <h2>New Alert</h2>
     <FormGroup>
       <Label for="currency_name">Select Currency Name</Label>
-      <Input type="select" name="currency_name" value={params.form.coin_name} onChange={update} required>
+      <Input type="select" name="currency_name" value={params.form.currency_name} onChange={update} required>
         {coins}
       </Input>
     </FormGroup>

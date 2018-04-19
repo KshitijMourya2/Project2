@@ -6,20 +6,21 @@ defmodule CryptoappWeb.Scheduler do
   end
 
   def init(state) do
-    handle_info(:work, state)
+    alerts = Cryptoapp.CryptoCompare.moniter()
+    state = Map.put(state, :alerts, alerts)
+    schedule_work()
     {:ok, state}
   end
 
   def handle_info(:work, state) do
-  Cryptoapp.CryptoCompare.run()
-    IO.inspect("before upadate")
-    #Cryptoapp.CryptoCompare.update_price()
+    alerts = Map.get(state, :alerts)
+    Cryptoapp.CryptoCompare.update(alerts)
     schedule_work()
     {:noreply, state}
   end
 
-  def schedule_work do
-    Process.send_after(self(), :work, 30 * 1000)
+  def schedule_work() do
+    Process.send_after(self(), :work, 60 * 1000)
   end
 
 end
