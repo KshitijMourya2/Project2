@@ -3,16 +3,10 @@ import {connect, Provider} from "react-redux";
 import api from "../api";
 import {FormGroup, Label, Input} from 'reactstrap';
 import ReactDOM from "react-dom";
+import {withRouter} from "react-router-dom";
 
-export default function register_form(store, root) {
-    ReactDOM.render(
-        <Provider store={store}>
-            <RegisterForm />
-        </Provider>, root
-    );
-}
+function RegisterForm(props) {
 
-    let RegisterForm = connect((state) => state)((props) => {
         let registerForm = props.register_form;
         console.log("FORM ", registerForm);
         let _csrf_token = $('[name="_csrf_token"]').val();
@@ -145,4 +139,10 @@ export default function register_form(store, root) {
             <a href={"/"} className={"btn btn-primary ml-2"}>Back</a>
         </form>
 
-})
+}
+
+function state2props(state) {
+    return {coin_price_history_min: state.coin_price_history_min};
+}
+
+export default withRouter(connect(state2props)(RegisterForm));

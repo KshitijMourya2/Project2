@@ -5,7 +5,7 @@ import _ from "underscore";
 import {Link, Redirect} from 'react-router-dom';
 import {ListGroup, Modal, ModalHeader, ModalBody, ModalFooter, Button} from 'reactstrap';
 import {withRouter} from "react-router-dom";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label} from 'recharts';
 
 
 function CoinDetails(props) {
@@ -13,7 +13,9 @@ function CoinDetails(props) {
 
     let priceHistoryMin = props.coin_price_history_min;
     console.log("priceHistoryMin", priceHistoryMin);
-    let data = _.map(priceHistoryMin.Data, (item) => {return {name:timeConvert(item.time), low:item.low, high: item.high, open:item.open}})
+    let data = _.map(priceHistoryMin.Data, (item) => {
+        return {name: timeConvert(item.time), low: item.low, high: item.high, open: item.open}
+    })
     console.log("data ", data);
     // let data = [
     //     {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
@@ -26,7 +28,7 @@ function CoinDetails(props) {
     // ];
 
     function timeConvert(time) {
-        let date = new Date(time*1000);
+        let date = new Date(time * 1000);
         let hours = date.getHours();
         let minutes = "0" + date.getMinutes();
         let seconds = "0" + date.getSeconds();
@@ -35,15 +37,18 @@ function CoinDetails(props) {
     }
 
     return <LineChart width={600} height={400} data={data}
-                   margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-            <XAxis dataKey="name"/>
-            <YAxis type="number" domain={['dataMin - dataMin/80', 'dataMax + dataMax/80']}/>
-            <CartesianGrid strokeDasharray="5 5"/>
-            <Tooltip/>
-            <Legend />
-            <Line type="monotone" dataKey="high" stroke="#8884d8" activeDot={{r: 8}}/>
-            <Line type="monotone" dataKey="low" stroke="#82ca9d" />
-        </LineChart>;
+                      margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+        <XAxis dataKey="name">
+            <Label value="Time(Last Hour)" offset={-5} position="insideBottomRight"/>
+        </XAxis>
+        <YAxis type="number" domain={['auto', 'auto']}
+               label={{value: 'Price', angle: -90, position: 'left'}}/>
+        <CartesianGrid strokeDasharray="5 5"/>
+        <Tooltip/>
+        <Legend/>
+        <Line type="monotone" dataKey="high" stroke="#8884d8" activeDot={{r: 8}}/>
+        <Line type="monotone" dataKey="low" stroke="#82ca9d"/>
+    </LineChart>;
 }
 
 function state2props(state) {

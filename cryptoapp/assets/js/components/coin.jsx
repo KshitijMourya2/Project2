@@ -5,30 +5,55 @@ import {Card, CardBody, CardHeader, Modal, ModalHeader, ModalBody, ModalFooter, 
 import {connect} from "react-redux";
 import _ from 'underscore';
 import CoinDetails from './coinDetails';
+import PriceDetail from './priceDetail';
+import $ from 'jquery';
 
 function Coin(props) {
 
     let coin = props.coin;
     let index = props.index;
     let widgetControl = props.coin_details_widget;
-    console.log("widgetControl", widgetControl);
+    //console.log("prop price", props.prices);
     let USD = 0;
     let EUR = 0;
     let CNY = 0;
+    let pricesDetail = null;
     if (props.prices != []) {
-        let prices = _.find(props.prices, (pp) => pp.Name == coin.Name);//_.filter(props.prices, (pp) => pp.Name == coin.Name);
-        if (prices != undefined) {
-            USD = prices.USD;
-            EUR = prices.EUR;
-            CNY = prices.CNY;
+        let prices = _.find(props.prices, (pp) => pp.name == coin.Name);//_.filter(props.prices, (pp) => pp.Name == coin.Name);
+
+        if (prices != undefined || prices != null) {
+            pricesDetail = prices.priceDetail;
+            //console.log("pricesDetail111 ", pricesDetail);
+            USD = prices.priceDetail.USD.PRICE;
+            EUR = prices.priceDetail.EUR.PRICE;
+            CNY = prices.priceDetail.CNY.PRICE;
         }
     }
 
     let baseUrl = "https://www.cryptocompare.com/";
 
-    function toggleWidget() {
+    function toggleWidget(ev) {
+        let btn = $(ev.target);
+        let toCurrency = "USD";
         if (!widgetControl.modal[index]) {
-            api.getCoinDetails(coin.Name, "USD", props, index);
+            if (btn.attr("id") == "USDPriceChartBtn") {
+                toCurrency = "USD";
+            } else if (btn.attr("id") == "EURPriceChartBtn") {
+                toCurrency = "EUR";
+            } else if (btn.attr("id") == "CNYPriceChartBtn") {
+                toCurrency = "CNY";
+            }
+
+            let action = {
+                type: "SET_COIN_DETAIL_MODAL_TITLE",
+                data: {
+                    modalTitle: coin.Name + " TO " + toCurrency,
+                    modal: widgetControl.modal
+                }
+            }
+            props.dispatch(action);
+            api.getCoinDetails(coin.Name, toCurrency, props, index);
+
         } else {
             let newWidget = {
                 modal: Array(20).fill(false)
@@ -39,7 +64,6 @@ function Coin(props) {
             };
             props.dispatch(action);
         }
-
 
 
     }
@@ -54,24 +78,24 @@ function Coin(props) {
             <CardHeader><b>{coin.Name}</b></CardHeader>
             <CardBody>
                 <div className={"row"}>
-                    <div className={"col-3"}>
+                    <div className={"col-1"}>
                         <img style={{width: "40px"}} src={baseUrl + coin.ImageUrl}></img>
                     </div>
-                    <div className={'col-3'}>
-                        <span><b>$ </b>{USD}</span><br/>
-                        <span><b>€ </b>{EUR}</span><br/>
-                        <span><b>¥ </b>{CNY}</span>
+                    <div className={'col-9 text-center'}>
+                        <PriceDetail pricesDetail={pricesDetail}/>
                     </div>
-                    <div className={'col-5 text-right'}>
-                        <Button onClick={toggleWidget}>Price Chart</Button>
+                    <div className={'col-1 text-center'}>
+                        <Button id={"USDPriceChartBtn"} className={"m-1"} onClick={toggleWidget}>USD Price Chart</Button>
+                        <Button id={"EURPriceChartBtn"} className={"m-1"} onClick={toggleWidget}>EUR Price Chart</Button>
+                        <Button id={"CNYPriceChartBtn"} className={"m-1"} onClick={toggleWidget}>CNY Price Chart</Button>
                     </div>
                 </div>
             </CardBody>
         </Card>
-        <Modal size={"lg"} isOpen={widgetControl.modal[index]} toggle={toggleWidget} backdrop={false} >
-            <ModalHeader><b>{coin.Name} To USD</b></ModalHeader>
+        <Modal size={"lg"} isOpen={widgetControl.modal[index]} toggle={toggleWidget} backdrop={false}>
+            <ModalHeader><b id={"modalTile"}>{widgetControl.modalTitle}</b></ModalHeader>
             <ModalBody>
-                <CoinDetails />
+                <CoinDetails/>
             </ModalBody>
             <ModalFooter>
                 <Button onClick={toggleWidget}>Close</Button>
