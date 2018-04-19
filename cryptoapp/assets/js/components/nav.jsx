@@ -48,6 +48,7 @@ let Session = connect(({token}) => {return {token};})((props) => {
   }
 
   return <div className="navbar-text">
+    <Link to="/users" href="#"><img src="../images/profile.png" alt="Profile" width="40" height="40"/></Link>
     Welcome { props.token.user_name } &nbsp;
     <Link onClick={ logout } className="btn btn-danger" to={"/"}>Logout</Link>
   </div>;
@@ -80,7 +81,6 @@ function Nav(props) {
             <DropdownMenu>
               <DropdownItem tag={Link} to="/alerts" href="#">Alerts</DropdownItem>
               <DropdownItem tag={Link} to="/newAlert" href="#">Create Alert</DropdownItem>
-              <DropdownItem tag={Link} to="/users" href="#">Profile</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </ul>
