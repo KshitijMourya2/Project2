@@ -25,7 +25,7 @@ function User(params) {
         <p>Name: <b>{ user.name }</b></p>
         <p>Email id: <b>{ user.email }</b></p>
         <p>Password: <b>{ user.password }</b></p>
-        <Link to={"/editUser"} className="btn btn-primary mr-2" onClick={ edit_user }>Edit</Link>
+        <Link to={"/editUser"} className="btn btn-primary mr-2" onClick={edit_user}>Edit</Link>
         <Button onClick={submit} color="danger">Delete</Button>
       </div>
     </CardBody>

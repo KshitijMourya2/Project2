@@ -24,6 +24,7 @@ defmodule CryptoappWeb.Router do
     get "/editAlert", PageController, :index
     get "/editUser", PageController, :index
     get "/users/:id", PageController, :index
+    get "/coinDetails", PageController, :index
   end
 
   # Other scopes may use custom stacks.

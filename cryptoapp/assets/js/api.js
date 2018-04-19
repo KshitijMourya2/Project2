@@ -212,6 +212,34 @@ class TheServer {
       }
       return b;
     }
+
+    getCoinDetails(coinName, toCurrency, props, coinIndex) {
+        $.ajax("https://min-api.cryptocompare.com/data/histominute?fsym="+ coinName + "&tsym="+ toCurrency+"&limit=60&e=CCCAGG", {
+            method: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            success: (resp) => {
+                console.log("getCoinDetails", resp.Data);
+                let action = {
+                    type: "SET_COIN_PRICE_HISTORY_MIN",
+                    data: resp
+                }
+                props.dispatch(action);
+
+                let newWidget = {
+                    modal: Array(20).fill(false)
+                };
+                newWidget.modal[coinIndex] = !props.coin_details_widget.modal[coinIndex];
+                let action2 = {
+                    type: "TOGGLE_COIN_DETAIL_MODAL_STATE",
+                    data: newWidget
+                };
+
+                props.dispatch(action2);
+                //props.history.push("/coinDetails");
+            }
+        });
+    }
 }
 
 export default new TheServer();

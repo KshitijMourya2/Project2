@@ -13,7 +13,7 @@ defmodule CryptoappWeb.Scheduler do
   def handle_info(:work, state) do
   Cryptoapp.CryptoCompare.run()
     IO.inspect("before upadate")
-    Cryptoapp.CryptoCompare.update_price()
+    #Cryptoapp.CryptoCompare.update_price()
     schedule_work()
     {:noreply, state}
   end

@@ -126,11 +126,36 @@ function alerts(state = [], action) {
     }
   }
 
+let init_coin_details_widget ={
+    modal: Array(20).fill(false)
+}
+
+function coin_details_widget(state= init_coin_details_widget, action) {
+    switch (action.type) {
+        case "TOGGLE_COIN_DETAIL_MODAL_STATE":
+            return Object.assign({}, state, action.data);
+            break;
+        default:
+            return state;
+    }
+}
+
+function coin_price_history_min(state= null, action) {
+    switch (action.type) {
+        case "SET_COIN_PRICE_HISTORY_MIN":
+            return Object.assign({}, state, action.data);
+            break;
+        default:
+            return state;
+    }
+}
+
 function root_reducer(state0, action) {
     let reducer = combineReducers({
         coin_price_list: coin_price_list,
         coin_list: coin_list,
-        alerts, users, form, token, login, register, editform
+        alerts, users, form, token, login, register, editform,
+        coin_details_widget, coin_price_history_min
     });
     let state1 = reducer(state0, action);
     return deepFreeze(state1);
