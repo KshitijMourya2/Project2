@@ -41,10 +41,7 @@ function AlertForm(params) {
       <Label for="lower_limit">Lower limit</Label>
       <Input type="number" name="lower_limit" value={params.form.lower_limit} onChange={update} required />
     </FormGroup>
-    <FormGroup>
-      <Label for="currentprice">Current Price</Label>
-      <Input type="number" name="currentprice" value={params.form.currentprice} onChange={update} required />
-    </FormGroup>
+
     <Button onClick={submit} color="success">Create Alert</Button> &nbsp; &nbsp; &nbsp;
     <Link className="btn btn-danger" to={"/"}>Cancel</Link>
   </div>;
