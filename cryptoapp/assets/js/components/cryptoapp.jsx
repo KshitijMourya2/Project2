@@ -34,7 +34,9 @@ let Cryptoapp = connect((state) => state)((props) => {
                     }/>
                     <Route path="/alerts" exact={true} render={() =>
                         <div>
-                            <Alerts alerts={props.alerts}/>
+                            <Alerts alerts={_.filter(props.alerts, (tt) =>
+                                props.token.user_id == tt.user.id)
+                            }/>
                         </div>
                     }/>
                     <Route path="/newAlert" exact={true} render={() =>
@@ -49,7 +51,7 @@ let Cryptoapp = connect((state) => state)((props) => {
                     <Route path="/editUser" exact={true} render={() =>
                         <Register users={props.users} root={this}/>
                     }/>
-                    <Route path="/users/:user_id" render={({match}) =>
+                    <Route path="/Alerts" render={({match}) =>
                         <Alerts alerts={_.filter(props.alerts, (tt) =>
                             match.params.user_id == tt.user.id)
                         }/>

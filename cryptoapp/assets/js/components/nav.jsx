@@ -76,7 +76,7 @@ function Nav(props) {
             <NavLink to="/newAlert" exact={true} className="nav-link">Subscribe</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/alerts" exact={true} className="nav-link">Alerts</NavLink>
+            <NavLink to="/Alerts"  exact={true} className="nav-link">Alerts</NavLink>
           </NavItem>
         </ul>
         { session_info }
