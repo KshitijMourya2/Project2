@@ -72,19 +72,23 @@ function Coin(props) {
         api.getCoinDetails(coin.Name, "USD", props);
     }
 
+    const divStyle = {
+        width: "200em",
+        height: "100em",
+    };
 
     return (<div>
-        <Card className={"m-3"}>
+        <Card className={"m-3"} style={{width: "30rem"}}>
             <CardHeader><b>{coin.Name}</b></CardHeader>
             <CardBody>
                 <div className={"row"}>
-                    <div className={"col-1"}>
-                        <img style={{width: "40px"}} src={baseUrl + coin.ImageUrl}></img>
+                    <div className={"col-sm-1"}>
+                        <img style={{width: "5rem"}} src={baseUrl + coin.ImageUrl}></img>
                     </div>
-                    <div className={'col-9 text-center'}>
+                    <div className={'col-sm-9 text-center'} data-spy="scroll">
                         <PriceDetail pricesDetail={pricesDetail}/>
                     </div>
-                    <div className={'col-1 text-center'}>
+                    <div className={'col-sm-1 text-center'}>
                         <Button id={"USDPriceChartBtn"} className={"m-1"} onClick={toggleWidget}>USD Price Chart</Button>
                         <Button id={"EURPriceChartBtn"} className={"m-1"} onClick={toggleWidget}>EUR Price Chart</Button>
                         <Button id={"CNYPriceChartBtn"} className={"m-1"} onClick={toggleWidget}>CNY Price Chart</Button>
@@ -92,7 +96,7 @@ function Coin(props) {
                 </div>
             </CardBody>
         </Card>
-        <Modal size={"lg"} isOpen={widgetControl.modal[index]} toggle={toggleWidget} backdrop={false}>
+        <Modal isOpen={widgetControl.modal[index]} toggle={toggleWidget} backdrop={false}>
             <ModalHeader><b id={"modalTile"}>{widgetControl.modalTitle}</b></ModalHeader>
             <ModalBody>
                 <CoinDetails/>
