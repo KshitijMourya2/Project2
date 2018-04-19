@@ -1,10 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Link } from 'react-router-dom';
 import api from '../api';
 
 function Register(params) {
+
+  let email = false;
+
+  function handleValidSubmit(event, values) {
+    this.setState({email: values.email});
+  }
+
+  function handleInvalidSubmit(event, errors, values) {
+    this.setState({email: values.email, error: true});
+  }
 
   function update(ev) {
     let tgt = $(ev.target);
@@ -31,22 +42,13 @@ function Register(params) {
 
   return <div style={{padding: "4ex"}}>
     <h3>New User</h3>
-    <Form>
-      <FormGroup>
-        <Label for="name">Name</Label>
-        <Input name="name" value={params.form.name} placeholder="Abc" onChange={update} />
-      </FormGroup>
-      <FormGroup>
-        <Label for="email">Email</Label>
-        <Input type="email" name="email" value={params.form.email} placeholder="abc@example.com" onChange={update} />
-      </FormGroup>
-      <FormGroup>
-        <Label for="pass">Password</Label>
-          <Input type="password" name="pass" value={params.form.pass} placeholder="password" onChange={update} />
-      </FormGroup>
+    <AvForm onValidSubmit={handleValidSubmit} onInvalidSubmit={handleInvalidSubmit}>
+        <AvField name="name" label="Name" value={params.form.name} placeholder="Abc" onChange={update} required />
+        <AvField name="email" label="Email Address" type="email" value={params.form.email} placeholder="abc@example.com" onChange={update} required />
+        <AvField name="pass" label="Password" type="password" value={params.form.pass} placeholder="password" onChange={update} required />
       <Link onClick={submit} to={"/"} className="btn btn-success">Register</Link> &nbsp; &nbsp;
       <Button onClick={clear} color="danger">Clear</Button>
-    </Form>
+    </AvForm>
   </div>;
 }
 

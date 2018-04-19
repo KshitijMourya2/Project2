@@ -37,16 +37,24 @@ let Cryptoapp = connect((state) => state)((props) => {
             </div>
           } />
           <Route path="/newAlert" exact={true} render={() =>
-            <AlertForm users={props.users} root={this} />
+            <div>
+              <AlertForm users={props.users} root={this} />
+              <Alerts alerts={props.alerts} />
+            </div>
           } />
           <Route path="/editAlert" exact={true} render={() =>
             <EditForm users={props.users} root={this} />
           } />
-          <Route path="/users" exact={true} render={() =>
+          <Route path="/users/" exact={true} render={() =>
             <Users users={props.users} />
           } />
           <Route path="/editUser" exact={true} render={() =>
             <Register users={props.users} root={this} />
+          } />
+          <Route path="/users/:user_id" render={({match}) =>
+            <Users users={_.filter(props.users, (uu) =>
+              match.params.user_id == uu.user.id )
+            } />
           } />
           <Route path="/users/:user_id" render={({match}) =>
             <Alerts alerts={_.filter(props.alerts, (tt) =>

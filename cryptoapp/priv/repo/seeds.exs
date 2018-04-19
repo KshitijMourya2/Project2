@@ -18,12 +18,16 @@ defmodule Seeds do
 
   def run do
     pa = Comeonin.Pbkdf2.hashpwsalt("alice123");
+    pb = Comeonin.Pbkdf2.hashpwsalt("bob123");
 
     Repo.delete_all(User)
-    a = Repo.insert!(%User{ name: "Bob", email: "bob@example.com", password_hash: pa })
+    a = Repo.insert!(%User{ name: "Alice", email: "alice@example.com", password_hash: pa })
+    b = Repo.insert!(%User{ name: "Bob", email: "bob@example.com", password_hash: pb })
 
     Repo.delete_all(Alert)
-    Repo.insert!(%Alert{ currency_name: "BTC", upper_limit: 1000.0, lower_limit: 500.0, currentprice: 750.0, user_id: a.id })
+    Repo.insert!(%Alert{ currency_name: "BTC", upper_limit: 10000.0, lower_limit: 8000.0, currentprice: 8196.8, user_id: a.id })
+    Repo.insert!(%Alert{ currency_name: "ETH", upper_limit: 700.0, lower_limit: 500.0, currentprice: 531.08, user_id: b.id })
+
     Repo.delete_all(Coin)
     Repo.insert!(%Coin{ coin_name: "BTC"})
     Repo.insert!(%Coin{ coin_name: "ETH"})
