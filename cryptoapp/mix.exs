@@ -20,7 +20,7 @@ defmodule Cryptoapp.Mixfile do
   def application do
     [
       mod: {Cryptoapp.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :sendgrid]
     ]
   end
 
@@ -43,6 +43,7 @@ defmodule Cryptoapp.Mixfile do
       {:cowboy, "~> 1.0"},
       {:httpoison, "~> 1.0"},
       {:poison, "~> 3.1"},
+      {:sendgrid, "~> 1.8.0"},
       {:comeonin, "~> 4.0"},
       #{:argon2_elixir, "~> 1.2"},
       {:pbkdf2_elixir, "~> 0.12"},

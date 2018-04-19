@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Form, FormGroup, NavItem, Input, Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Form, FormGroup, NavItem, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import api from '../api';
 import app from '../app';
@@ -20,16 +20,14 @@ let LoginForm = connect(({login}) => {return {login};})((props) => {
   function create_token(ev) {
     api.submit_login(props.login);
   }
-  console.log("props.login: " + props.login);
+
   return <div className="navbar-text">
     <Form inline>
       <FormGroup>
-        <Input type="email" name="email" placeholder="abc@example.com"
-               value={props.login.email} onChange={update} />
+        <Input type="email" name="email" placeholder="abc@example.com" onChange={update} required/>
       </FormGroup>
       <FormGroup>
-        <Input type="password" name="pass" placeholder="password"
-               value={props.login.pass} onChange={update} />
+        <Input type="password" name="pass" placeholder="password" onChange={update} required/>
       </FormGroup>
       <Button onClick={create_token} color="primary">Log In</Button>&nbsp;
     </Form>
@@ -48,6 +46,7 @@ let Session = connect(({token}) => {return {token};})((props) => {
   }
 
   return <div className="navbar-text">
+    <Link to="/users" href="#"><img src="../images/profile.png" alt="Profile" width="40" height="40"/></Link>
     Welcome { props.token.user_name } &nbsp;
     <Link onClick={ logout } className="btn btn-danger" to={"/"}>Logout</Link>
   </div>;
@@ -73,16 +72,9 @@ function Nav(props) {
           <NavItem>
             <NavLink to="/" exact={true} activeClassName="active" className="nav-link">CoinFeed</NavLink>
           </NavItem>
-          <UncontrolledDropdown>
-            <DropdownToggle caret>
-              Subscribe
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem tag={Link} to="/alerts" href="#">Alerts</DropdownItem>
-              <DropdownItem tag={Link} to="/newAlert" href="#">Create Alert</DropdownItem>
-              <DropdownItem tag={Link} to="/users" href="#">Profile</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
+          <NavItem>
+            <NavLink to="/newAlert" exact={true} className="nav-link">Subscribe</NavLink>
+          </NavItem>
         </ul>
         { session_info }
       </nav>

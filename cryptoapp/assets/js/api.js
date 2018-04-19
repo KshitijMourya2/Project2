@@ -115,19 +115,6 @@ class TheServer {
     });
   }
 
-  delete_user(user_id) {
-    $.ajax("/api/v1/users"+ "/" + user_id, {
-      method: "delete",
-      dataType: "json",
-      contentType: "application/json; charset=UTF-8",
-       data: "",
-      success: (resp) => {
-      this.request_users();
-      alert("User deleted!");
-      },
-    });
-  }
-
   request_coin_price(name, url) {
       $.ajax(url, {
           method: "get",
