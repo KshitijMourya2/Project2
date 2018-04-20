@@ -78,12 +78,12 @@ function Coin(props) {
     };
 
     return (<div>
-        <Card className={"m-3"} style={{width: "30rem"}}>
+        <Card className={"w-90 m-3"} >
             <CardHeader><b>{coin.Name}</b></CardHeader>
             <CardBody>
                 <div className={"row"}>
                     <div className={"col-sm-1"}>
-                        <img style={{width: "5rem"}} src={baseUrl + coin.ImageUrl}></img>
+                        <img style={{width: "5rem"}} src={baseUrl + coin.ImageUrl}/>
                     </div>
                     <div className={'col-sm-9 text-center'} data-spy="scroll">
                         <PriceDetail pricesDetail={pricesDetail}/>

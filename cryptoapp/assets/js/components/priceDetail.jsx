@@ -15,40 +15,42 @@ function PriceDetail(props) {
     let priceDetailComponent = <div>Loading</div>
     if (pricesDetail != null) {
         console.log("pricesDetail", pricesDetail.USD);
-        priceDetailComponent = <Table size="sm">
-            <thead>
-            <tr>
-                <th>Prices</th>
-                <th>Direct Vol. 24H</th>
-                <th>Total Vol. 24H</th>
-                <th>Market Cap</th>
-                <th>Chg. 24H</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">{pricesDetail.USD.PRICE}</th>
-                <td>{pricesDetail.USD.VOLUME24HOURTO}</td>
-                <td>{pricesDetail.USD.TOTALVOLUME24HTO}</td>
-                <td>{pricesDetail.USD.MKTCAP}</td>
-                <td>{pricesDetail.USD.CHANGEPCT24HOUR}%</td>
-            </tr>
-            <tr>
-                <th scope="row">{pricesDetail.EUR.PRICE}</th>
-                <td>{pricesDetail.EUR.VOLUME24HOURTO}</td>
-                <td>{pricesDetail.EUR.TOTALVOLUME24HTO}</td>
-                <td>{pricesDetail.EUR.MKTCAP}</td>
-                <td>{pricesDetail.EUR.CHANGEPCT24HOUR}%</td>
-            </tr>
-            <tr>
-                <th scope="row">{pricesDetail.CNY.PRICE}</th>
-                <td>{pricesDetail.CNY.VOLUME24HOURTO}</td>
-                <td>{pricesDetail.CNY.TOTALVOLUME24HTO}</td>
-                <td>{pricesDetail.CNY.MKTCAP}</td>
-                <td>{pricesDetail.CNY.CHANGEPCT24HOUR}%</td>
-            </tr>
-            </tbody>
-        </Table>
+        priceDetailComponent = <div class="table-responsive-sm">
+            <Table size="sm">
+                <thead>
+                <tr>
+                    <th>Prices</th>
+                    <th>Direct Vol. 24H</th>
+                    <th>Total Vol. 24H</th>
+                    <th>Market Cap</th>
+                    <th>Chg. 24H</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">{pricesDetail.USD.PRICE}</th>
+                    <td>{pricesDetail.USD.VOLUME24HOURTO}</td>
+                    <td>{pricesDetail.USD.TOTALVOLUME24HTO}</td>
+                    <td>{pricesDetail.USD.MKTCAP}</td>
+                    <td>{pricesDetail.USD.CHANGEPCT24HOUR}%</td>
+                </tr>
+                <tr>
+                    <th scope="row">{pricesDetail.EUR.PRICE}</th>
+                    <td>{pricesDetail.EUR.VOLUME24HOURTO}</td>
+                    <td>{pricesDetail.EUR.TOTALVOLUME24HTO}</td>
+                    <td>{pricesDetail.EUR.MKTCAP}</td>
+                    <td>{pricesDetail.EUR.CHANGEPCT24HOUR}%</td>
+                </tr>
+                <tr>
+                    <th scope="row">{pricesDetail.CNY.PRICE}</th>
+                    <td>{pricesDetail.CNY.VOLUME24HOURTO}</td>
+                    <td>{pricesDetail.CNY.TOTALVOLUME24HTO}</td>
+                    <td>{pricesDetail.CNY.MKTCAP}</td>
+                    <td>{pricesDetail.CNY.CHANGEPCT24HOUR}%</td>
+                </tr>
+                </tbody>
+            </Table>
+        </div>
     }
 
     return <div>{priceDetailComponent}</div>;
