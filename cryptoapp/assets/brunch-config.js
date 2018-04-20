@@ -67,8 +67,11 @@ exports.config = {
     enabled: true,
     globals: {
         _: 'underscore',
-        $: 'jquery'
-
+        $: 'jquery',
+        jQuery: 'jquery',
+        Tether: 'tether',
+        Popper: 'popper.js',
+        bootstrap: 'bootstrap',
     }
   }
 };

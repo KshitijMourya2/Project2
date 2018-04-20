@@ -70,32 +70,33 @@ function Nav(props) {
         <span className="navbar-brand">
           CryptoApp
         </span>
-
+        <ul className="navbar navbar-default"></ul>
+        <p align="right">
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
-
-        </button>
+          MENU  &#9776;
+        </button> </p>
+       <p align="right">
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-          <ul class="nav navbar-nav">
-              <li>
-               <NavLink to="/" exact={true} activeClassName="active" classname="nav-link">Coinfeed</NavLink>
-              </li>
-              <li><NavLink to="/newAlert" exact={true} classname="nav-link">  Subscribe  </NavLink></li>
-              <li><NavLink to="/alerts" exact={true} classname="nav-link">   Alerts  </NavLink></li>
-              <li>{session_info}</li>
-          </ul>
+          <ul className="navbar-nav mr-auto">
+              <NavItem>
+                <NavLink to="/" exact={true} activeClassName="active" className="nav-link">CoinFeed</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/newAlert" exact={true} className="nav-link">Subscribe</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/Alerts"  exact={true} className="nav-link">Alerts</NavLink>
+              </NavItem>
+            </ul>
+
           <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
               <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-              <li class="dropdown order-1">
-                  <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right mt-2">
-                     <li class="px-3 py-2">
-                           { session_info }
-                      </li>
-                  </ul>
-              </li>
           </ul>
         </div>
+          { session_info }
+        </p>
       </div>
+
       </nav>
     );
   }
@@ -106,15 +107,14 @@ function Nav(props) {
         <span className="navbar-brand">
           CryptoApp
         </span>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#collapse">
-            &#9776;
-        </button>
-        <div class="collapse navbar-collapse" id="collapse">
-          <ul class="nav navbar-nav">
-            <li> { session_info } </li>
-            <li> <NavLink to="/register" href="#" className="btn btn-primary">Register</NavLink>
-            </li>
-          </ul>
+        <p align="right">
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            MENU &#9776;
+        </button> </p>
+        <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+          <ul className="navbar-nav mr-auto"></ul>
+          { session_info }
+          <NavLink to="/register" href="#" className="btn btn-primary">Register</NavLink>
           </div>
       </div>
       </nav>

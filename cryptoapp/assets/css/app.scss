@@ -6,6 +6,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
+
 }
 
 .crazy_colorful_bar {
@@ -95,6 +96,7 @@ body {
   text-align: center;
 }
 
+
 .modal-header h3 {
   color: #FFF;
   text-shadow: 1px 2px 3px rgba(0, 0, 0, .2);
@@ -160,4 +162,8 @@ body {
 
 .navbar .dropdown-menu .form-control{
   width: 200px;
+}
+
+.container{
+  background-color: white;
 }
