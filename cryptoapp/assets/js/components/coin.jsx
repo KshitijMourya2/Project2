@@ -97,11 +97,11 @@ function Coin(props) {
             </CardBody>
         </Card>
         <Modal isOpen={widgetControl.modal[index]} toggle={toggleWidget} backdrop={false}>
-            <ModalHeader><b id={"modalTile"}>{widgetControl.modalTitle}</b></ModalHeader>
-            <ModalBody>
+            <ModalHeader className={"w-100"}><b id={"modalTile"}>{widgetControl.modalTitle}</b></ModalHeader>
+            <ModalBody className={"w-100"}>
                 <CoinDetails/>
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter className={"w-100"}>
                 <Button onClick={toggleWidget}>Close</Button>
             </ModalFooter>
         </Modal>
