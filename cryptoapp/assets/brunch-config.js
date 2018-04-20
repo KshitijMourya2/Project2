@@ -68,6 +68,7 @@ exports.config = {
     globals: {
         _: 'underscore',
         $: 'jquery'
+
     }
   }
 };
