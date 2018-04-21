@@ -28,7 +28,7 @@ $(function() {
   api.request_alerts();
   api.request_users();
   api.request_coin_list();
-  var inter = setInterval(() => api.request_coin_list(), 90000);
+  var inter = setInterval(() => api.request_coin_list(), 10000);
   let viewport =  document.querySelector('meta[name="viewport"]');
 
   cryptoapp_init(store);
