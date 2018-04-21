@@ -14,8 +14,7 @@ function PriceDetail(props) {
 
     let priceDetailComponent = <div>Loading</div>
     if (pricesDetail != null) {
-        console.log("pricesDetail", pricesDetail.USD);
-        priceDetailComponent = <div class="table-responsive-sm">
+        priceDetailComponent = <div className="table-responsive-sm">
             <Table size="sm">
                 <thead>
                 <tr>

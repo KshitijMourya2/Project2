@@ -13,7 +13,6 @@ function Coin(props) {
     let coin = props.coin;
     let index = props.index;
     let widgetControl = props.coin_details_widget;
-    //console.log("prop price", props.prices);
     let USD = 0;
     let EUR = 0;
     let CNY = 0;
@@ -23,7 +22,6 @@ function Coin(props) {
 
         if (prices != undefined || prices != null) {
             pricesDetail = prices.priceDetail;
-            //console.log("pricesDetail111 ", pricesDetail);
             USD = prices.priceDetail.USD.PRICE;
             EUR = prices.priceDetail.EUR.PRICE;
             CNY = prices.priceDetail.CNY.PRICE;
@@ -109,7 +107,6 @@ function Coin(props) {
 }
 
 function state2props(state) {
-    //console.log("task form state2props", state.coin_price_list);
     return {prices: state.coin_price_list, coin_details_widget: state.coin_details_widget};
 }
 

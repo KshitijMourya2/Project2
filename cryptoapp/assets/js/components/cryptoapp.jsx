@@ -88,4 +88,3 @@ let Cryptoapp = connect((state) => state)((props) => {
         );
     }
 });
-

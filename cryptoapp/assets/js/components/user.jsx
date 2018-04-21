@@ -20,17 +20,13 @@ function User(params) {
   }
 
   return <Card>
-    <CardBody>
-      <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <p>Name: <b>{ user.name }</b></p>
-        <p>Email id: <b>{ user.email }</b></p>
-      </div>
-    </CardBody>
-  </Card>;
+      <CardBody>
+        <div>
+          <p>Name: <b>{ user.name }</b></p>
+          <p>Email id: <b>{ user.email }</b></p>
+        </div>
+      </CardBody>
+    </Card>;
 }
 
 function state2props(state) {

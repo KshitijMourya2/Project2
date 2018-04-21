@@ -9,9 +9,8 @@ body {
   background-image: url(../images/back.jpg);
 }
 
-.crazy_colorful_bar {
-  background-image: url(../images/vbar.jpg);
-  height: 14px;
+button:hover {
+  cursor: pointer;
 }
 
 .container {

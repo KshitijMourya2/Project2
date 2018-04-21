@@ -5,7 +5,6 @@ import {NavItem} from 'reactstrap';
 import api from "../api";
 
 function IndexContent(props) {
-    console.log("index props", props.coin_list);
     return (
         <div>
             <nav>
@@ -45,7 +44,6 @@ function IndexContent(props) {
 
 
 function state2props(state) {
-    // console.log("coins from indexcontent", state);
     return {coin_list: state.coin_list};
 }
 

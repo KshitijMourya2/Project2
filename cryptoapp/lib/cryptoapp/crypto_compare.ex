@@ -90,7 +90,6 @@ defmodule Cryptoapp.CryptoCompare do
 
   def unit_price(curr) do
     url = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" <> curr <> "&tsyms=USD"
-    IO.inspect(url)
     case HTTPoison.get(url) do
       {:ok, %{status_code: 200, body: body}} -> Poison.decode!(body)
       {:ok, %{status_code: 404}} ->  #404 Not Found Error

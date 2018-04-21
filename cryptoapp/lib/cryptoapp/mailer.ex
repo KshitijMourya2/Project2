@@ -15,12 +15,8 @@ defmodule CryptoappWeb.Mailer do
   end
 
   def handle_cast({:mail_moniter_update, prices}, state) do
-    IO.inspect("in mail")
     t = DateTime.utc_now
-    IO.inspect("1")
-    #curr_price = prices[a.currency_name]["USD"]
     updated_price = Alerts.list_alerts |> Enum.reduce(state, fn(a, acc) ->
-      IO.inspect("2")
     if Map.get(acc, a.id) == nil || DateTime.diff(DateTime.utc_now, Map.get(acc, a.id)) > 10800 do
         cond do
           prices[a.currency_name]["USD"] > a.upper_limit ->
@@ -48,10 +44,6 @@ defmodule CryptoappWeb.Mailer do
   end
 
   def mail_moniter_update(to, text, curr) do
-    IO.inspect("3")
-    IO.inspect(to)
-    IO.inspect(text)
-    IO.inspect(curr)
     SendGrid.Email.build()
     |> SendGrid.Email.add_to(to)
     |> SendGrid.Email.put_from("no-reply@cryptoapp.com")
