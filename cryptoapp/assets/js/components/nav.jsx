@@ -66,7 +66,7 @@ function Nav(props) {
   if(props.token){
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg fixed-top" role="navigation">
-        <div class="container">
+
         <span className="navbar-brand">
           CryptoApp
         </span>
@@ -95,7 +95,7 @@ function Nav(props) {
         </div>
           { session_info }
         </p>
-      </div>
+
 
       </nav>
     );
@@ -103,9 +103,9 @@ function Nav(props) {
   else {
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg fixed-top" role="navigation">
-        <div class="container">
+
         <span className="navbar-brand">
-          CryptoApp
+          <h1>CryptoApp</h1>
         </span>
         <p align="right">
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
@@ -115,7 +115,7 @@ function Nav(props) {
           <ul className="navbar-nav mr-auto"></ul>
           { session_info }
           <NavLink to="/register" href="#" className="btn btn-primary">Register</NavLink>
-          </div>
+
       </div>
       </nav>
     );

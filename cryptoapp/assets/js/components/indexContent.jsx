@@ -26,6 +26,8 @@ function IndexContent(props) {
             <br></br>
             <br></br>
             <br></br>
+            <br></br>
+            <br></br>
             <div className="tab-content" id="nav-tabContent" >
                 <Coins coins={props.coin_list}/>
                 <div className="tab-pane fade show active" id="nav-home" role = "tabpanel" aria-labelledby = "nav-home-tab" > </div>

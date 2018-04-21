@@ -26,6 +26,20 @@ function AlertForm(params) {
   //let coins = _.map(params.coins, (cc) => <option key={cc.id} value={cc.coin_name}>{cc.coin_name}</option>);
   let coins = _.map(lst, (cc) => <option value={cc}>{cc}</option>);
   return <div style={{padding: "4ex"}}>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
     <h2>New Alert</h2>
     <FormGroup>
       <Label for="currency_name">Select Currency Name</Label>

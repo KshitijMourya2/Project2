@@ -41,6 +41,13 @@ function Register(params) {
   }
 
   return <div style={{padding: "4ex"}}>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
     <h3>New User</h3>
     <AvForm onValidSubmit={handleValidSubmit} onInvalidSubmit={handleInvalidSubmit}>
         <AvField name="name" label="Name" value={params.form.name} placeholder="Abc" onChange={update} required />
